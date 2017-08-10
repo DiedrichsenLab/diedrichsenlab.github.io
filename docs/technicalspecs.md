@@ -12,5 +12,7 @@ title: Diedrichsen Lab Wiki
 ### Parts list for amplifier
 - Printed circuit board for amplifier circuit. Connection diagrams and files for PCB fabrication can be found [here](/assets/fingerboxes/circuit_schematics.zip).
 - Inputs from the force transducers are amplified and fed to a data acquisition card. We use a PCI sensoarray (S626), [spec sheet](http://www.sensoray.com/products/626.htm), card for this. The wiring diagram for connecting force transducer inputs to the breakout-box connecting to the S626 is shown below: ![stimulator box wiring](/assets/fingerboxes/stimBox_wiring.jpg)
-
+- The amplifier uses 10 OpAmps part number AD627AN, datasheet [here](http://pdf1.alldatasheet.com/datasheet-pdf/view/48100/AD/AD627AN.html).
+- In the backpart a 50 pin connector is attached to a ribon cable connector. the part number is RS403-342 datasheet [here](https://www.artisantg.com/TestMeasurement/81593-1/RS_403_342_50_Way_IDC_Header_DIN_Rail_Terminal).
+- An extra National Instruments I/O card can be included, part number NI USB-6218 datasheet [here](http://www.ni.com/en-ca/support/model.usb-6218.html).
 
