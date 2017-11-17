@@ -10,7 +10,9 @@ This page contains information about code and equipment that we use for experime
 ### Technical Specs
 [Finger boxes for imaging and behavioural experiments](/docs/technicalspecs)
 
-### Code
+### Server settings
+[Settings for different software to synchronize with server](/docs/serversettings)
+
 
 
 
