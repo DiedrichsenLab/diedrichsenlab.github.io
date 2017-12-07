@@ -7,8 +7,17 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:site" content="@typora">
   <meta name="twitter:title" content="Diedrichsen Lab Wiki">
-  <meta name="twitter:url" content="/docs/technicalspecs/">
-  <meta name="twitter:description" content="Hand devices used for behavioural/imaging experiments Parts list for hand device Force transducers (Honeywell FSG15N1A) spec sheet Plastic connectors for connecting force transducers outputs to amplifier (400 Series Buccaneer) spec sheet. Wiring diagram for connectors can be found here. Parts list for amplifier Printed circuit board for amplifier circuit. Connection diagrams and files for PCB fabrication can be found here. We also have a newer version of the amplifier circuit board with the the op-amps and the filter banks on the same circuit. The schematic files for the board can be found here. Inputs from the force transducers are amplified...">
+  <meta name="twitter:url" content="/docs/serversettings/">
+  <meta name="twitter:description" content="Synchronizing data/scripts with the server
+
+Using Syncovery
+
+
+  go to profile settings-&gt;internet,
+  under the settings tab select FTP, then select library 2 in the dropdown menu on the right
+  under the security tab, set security mode to Explicity TLS, version to TLS-v1-1.2, and Auth Cmd to TLS.
+
+">
   <meta name="twitter:image:src" content="http://typora.io/img/twitter-sum.png">
 
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
@@ -155,24 +164,15 @@
 
   <div id="pagecontainer" class="container">
     <div id="post-content" class="inner-page">
-        <h2 id="hand-devices-used-for-behaviouralimaging-experiments">Hand devices used for behavioural/imaging experiments</h2>
+        <h2 id="synchronizing-datascripts-with-the-server">Synchronizing data/scripts with the server</h2>
 
-<h3 id="parts-list-for-hand-device">Parts list for hand device</h3>
-<ul>
-  <li>Force transducers (Honeywell FSG15N1A) <a href="https://www.digikey.ca/product-detail/en/honeywell-sensing-and-productivity-solutions/FSG15N1A/480-2621-5-ND/1248956">spec sheet</a></li>
-  <li>Plastic connectors for connecting force transducers outputs to amplifier (400 Series Buccaneer) <a href="https://www.alliedelec.com/m/d/3b2e791d6f12f84357e18c8912681635.pdf">spec sheet</a>. Wiring diagram for connectors can be found <a href="/assets/fingerboxes/connectors.zip">here</a>.</li>
-</ul>
+<h3 id="using-syncovery">Using Syncovery</h3>
 
-<h3 id="parts-list-for-amplifier">Parts list for amplifier</h3>
-<ul>
-  <li>Printed circuit board for amplifier circuit. Connection diagrams and files for PCB fabrication can be found <a href="/assets/fingerboxes/circuit_schematics.zip">here</a>.</li>
-  <li>We also have a newer version of the amplifier circuit board with the the op-amps and the filter banks on the same circuit. The schematic files for the board can be found <a href="/assets/fingerboxes/s978_files.zip">here</a>.</li>
-  <li>Inputs from the force transducers are amplified and fed to a data acquisition card. We use a PCI sensoarray (S626), <a href="http://www.sensoray.com/products/626.htm">spec sheet</a>, card for this. The wiring diagram for connecting force transducer inputs to the breakout-box connecting to the S626 is shown below: <img src="/assets/fingerboxes/stimBox_wiring.jpg" alt="stimulator box wiring" /></li>
-  <li>The amplifier uses 10 OpAmps part number AD627AN, datasheet <a href="http://pdf1.alldatasheet.com/datasheet-pdf/view/48100/AD/AD627AN.html">here</a>.</li>
-  <li>In the backpart a 50 pin connector is attached to a ribon cable connector. the part number is RS403-342 datasheet <a href="https://www.artisantg.com/TestMeasurement/81593-1/RS_403_342_50_Way_IDC_Header_DIN_Rail_Terminal">here</a>.</li>
-  <li>An extra National Instruments I/O card can be included, part number NI USB-6218 datasheet <a href="http://www.ni.com/en-ca/support/model.usb-6218.html">here</a>.</li>
-</ul>
-
+<ol>
+  <li>go to profile settings-&gt;internet,</li>
+  <li>under the settings tab select FTP, then select library 2 in the dropdown menu on the right</li>
+  <li>under the security tab, set security mode to Explicity TLS, version to TLS-v1-1.2, and Auth Cmd to TLS.</li>
+</ol>
 
     </div>
   </div>
