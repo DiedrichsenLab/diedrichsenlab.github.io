@@ -1,0 +1,17 @@
+---
+layout: post
+title:  "Lab wiki Introduction"
+date:   2023-08-12 21:16:25 -0400
+categories: lab manual
+---
+Welcome to the Diedrichsen Lab Manual!
+
+This manual provides step-by-step guides for protocols frequently used at the Diedrichsen Lab.
+
+## Guides
+These guides are meant to cover common quesitions and essential topics for new lab memebers. However, everyone from older lab members to visitors is welcome to explore them for valuable insight.
+...
+
+## Tutorials
+Tutorials will be covering a wide range of topics and skills needed while doing research from writing papers and giving talks to using advanced data analysis techniques to look at your data.
+... 
