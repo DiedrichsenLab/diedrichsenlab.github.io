@@ -3,5 +3,10 @@ layout: page
 title: Contact
 permalink: /contact/
 ---
+# Contact Us
 
-Your about page content goes here.
+If you have any questions or concerns please direct them to one of the following emails:
+
+## Get in Touch
+
+- **Email**: [hello@example.com](example:hello@example.com)

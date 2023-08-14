@@ -4,4 +4,4 @@ title: About
 permalink: /about/
 ---
 
-Your about page content goes here.
+The Diedrichsen Lab Wiki is a manual that contains multiple guides and tutorials to help both new lab members and visitors explore common research topics.
