@@ -8,4 +8,4 @@ If you have any questions or concerns please direct them to one of the following
 
 ## Get in Touch
 
-- **Email**: [Barafat@uwo.ca]
+- **Email**: [Barafat@uwo.ca](example:Barafat@uwo.ca)
