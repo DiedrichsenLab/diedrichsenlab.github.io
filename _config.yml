@@ -23,7 +23,7 @@ email:
 description: >- # this means to ignore newlines until "baseurl:"
   A guide to standardized lab procedures and protocols at the Diedrichsen Lab.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.co
+url: "https://diedrichsenlab.github.io" # the base hostname & protocol for your site, e.g. http://example.co
 twitter_username: diedrichsenlab
 github_username:  DiedrichsenLab
 
