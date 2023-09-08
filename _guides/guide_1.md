@@ -20,7 +20,10 @@ title: Navigating lab meetings
 
 ---
 
-## Frequency and Duration
+## Location, Frequency and Duration
+
+### Location
+- Lab meetings are held in-person in room 4105 at the Western Interdisciplinary Research Building unless specified otherwise.
 
 ### Frequency
 - Lab meetings are held every week at the same day and time (TBD)
@@ -31,12 +34,12 @@ title: Navigating lab meetings
 
 ---
 
-## Lab meeting formats
+## Lab Meeting Formats
 
 ### Presentations
 - Lab members usually practice upcoming presentations (talks or posters) the week before their events. It is the job of the rest of the lab to provide constructive feedback to the presenter. Feedback can be given during or after the presentation.
 
-- Always ask questions if something is not clear. Lab meetings are meant to help the presenter but also to introduce new ideas to lab members.
+- Always ask questions if something is not clear. Lab meetings are meant to help the presenter but also introduce new ideas to lab members.
 
 - If you are presenting, make sure to have your setup fully ready before the start of the lab meeting. This includes setting up hybrid presentations if needed.
 
