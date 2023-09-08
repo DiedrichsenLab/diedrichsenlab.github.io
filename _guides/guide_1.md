@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Guide 1
+title: Navigating lab meetings
 ---
 
 Content for the guide.
