@@ -5,7 +5,7 @@ title: Navigating lab meetings
 
 ## Table of Contents
 - [Objectives of Lab Meetings](#objectives-of-lab-meetings)
-- [Frequency and Duration](#frequency-and-duration)
+- [Location, Frequency and Duration](#location,-frequency-and-duration)
 - [Lab meeting formats](#lab-meeting-formats)
 
 ---
