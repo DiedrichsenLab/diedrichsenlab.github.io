@@ -5,7 +5,7 @@ title: Navigating lab meetings
 
 ## Table of Contents
 - [Objectives of Lab Meetings](#objectives-of-lab-meetings)
-- [Location, Frequency and Duration](#location,-frequency-and-duration)
+- [Frequency and Duration](#frequency-and-duration)
 - [Lab meeting formats](#lab-meeting-formats)
 
 ---
@@ -20,13 +20,11 @@ title: Navigating lab meetings
 
 ---
 
-## Location, Frequency and Duration
-
-### Location
-- Lab meetings are held in-person in room 4105 at the Western Interdisciplinary Research Building unless specified otherwise.
+## Frequency and Duration
 
 ### Frequency
 - Lab meetings are held every week at the same day and time (TBD)
+- Lab meetings are held in-person in room 4105 at the Western Interdisciplinary Research Building unless specified otherwise.
 - No lab meetings are held on holidays
 
 ### Time Limit
@@ -45,6 +43,8 @@ title: Navigating lab meetings
 
 
 ### Tutorials/workshops
--
+- List of potential tutorials TBD
 
 ### Journal clubs
+- A team member selects a scientific article for a group discussion. The presenter summarizes the article's objectives, mthods and results followed by a group discussion.
+- Participation requires raeding the selected article in advance and having questions and comments ready for the discussion.
