@@ -23,12 +23,12 @@ title: Navigating lab meetings
 ## Frequency and Duration
 
 ### Frequency
-- Lab meetings are held every week at the same day and time (TBD)
+- Lab meetings are held *weekly* at the same day and time (TBD)
 - Lab meetings are held in-person in room 4105 at the Western Interdisciplinary Research Building unless specified otherwise.
-- No lab meetings are held on holidays
+- *Note*: No lab meetings are held on holidays
 
 ### Time Limit
-- Lab meetings should take no longer than one hour.
+- Lab meetings should take no longer than *one hour*.
 
 ---
 
