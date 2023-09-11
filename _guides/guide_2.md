@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Guide 2
+title: fMRI Preprocessing
 ---
 
 Content for the guide.

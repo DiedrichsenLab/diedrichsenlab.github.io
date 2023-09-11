@@ -4,3 +4,5 @@
 
 layout: home
 ---
+
+Welcome to Diedrichsen Lab Wiki. Check out the lab news bellow.

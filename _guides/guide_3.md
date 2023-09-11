@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Guide 3
+title: Designing Robot Experiments
 ---
 
 Content for the guide.

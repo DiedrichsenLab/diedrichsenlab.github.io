@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Navigating lab meetings
+title: Navigating Lab Meetings
 ---
 
 ## Table of Contents
