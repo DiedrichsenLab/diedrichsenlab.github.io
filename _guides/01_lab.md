@@ -14,7 +14,7 @@ title: Navigating Lab Meetings
 
 ### Communication
 - Main goal: information sharing and problem solving.
-  
+
 ### Regular Updates
 - Platform for everyone to provide updates on their projects and receive constructive feedback.
 
