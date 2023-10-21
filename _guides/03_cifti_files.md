@@ -56,7 +56,90 @@ Vice versa, you can render dpconn files in the cerebellar volume, and select the
 
 ![dpconn example](/assets/workbench_dpconn_example.png)
 
+## Example: Extracting condition names from dscalar.nii files
 
+Lets say you have a dscaler.nii file and you want to extract the condition names (found within the row axis).
 
+1.Load your dscalar.nii with nibabel
 
+```python
+import nibabel as nb
 
+cifti_file = nb.load('path_to_your_cifti_file.dscalar.nii')
+```
+2.Access the nifti file header which contains information about the two axis:
+
+```python
+
+cifti_file.header
+```
+You can get the axis you are interested in by indexing it. In our case we want the scalar axis so we index '0' for rows:
+
+```python
+
+axis = cifti_file.header.get_axis(0)
+```
+
+3.Finally, you can get an array of strings representing your conditions:
+
+```python
+
+my_conditions = axis.name
+```
+
+Example output:
+
+```python
+array(['NoGo', 'Go', 'ToM', 'VideoAct', 'VideoKnots', 'UnpleasantScenes',
+       'PleasantScenes', 'Math', 'DigitJudgement', 'CheckerBoard',
+       'SadFaces', 'HappyFaces', 'IntervalTiming', 'MotorImagery',
+       'FingerSimple', 'FingerSeq', 'Verbal0Back', 'Verbal2Back',
+       'Object0Back', 'Object2Back', 'SpatialNavigation', 'StroopIncon',
+       'StroopCon', 'VerbGen', 'WordRead', 'VisualSearchSmall',
+       'VisualSearchMed', 'VisualSearchLarge', 'rest'], dtype='<U17')
+```
+
+## Example: Plotting Cerebellar flatmaps of dscalar.nii files for conditions
+
+What if you want to plot cerebellar flatmap of a specific condition in your dscalar.nii?
+
+To do that, we will use 3 additonal libraries (numpy, nitools and SUITPy).
+
+* Nitools will be used for extracting volumetric data from our CIFTI:
+    https://nitools.readthedocs.io/en/latest/
+
+* SUITPy will be used to project Volumetric data to a Cereballar flatmap:
+    https://suitpy.readthedocs.io/en/latest/
+
+Say you are interested in plotting a flatmap for the 'VerbGen' task:
+
+```python
+import numpy as np
+import nibabel as nb
+import nitools as nt
+import SUITPy.flatmap as flatmap
+
+task_of_interest = 'VerbGen'
+
+# Load CIFTI
+cifti_file = nb.load('path_to_your_cifti_file.dscalar.nii')
+
+# Extract volume
+volumetric_data = nt.volume_from_cifti(cifti_data)
+
+# Project onto cerebellar flatmap
+flatmap_img_data = flatmap.vol_to_surf(volumetric_data)
+
+# Find the index of the VerbGen task using the header
+index_of_task = np.where(scalar_axis.name == task_of_interest)[0][0]
+
+# Plot
+flatmap.plot(data= flatmap_img_data[:,index_of_task], cmap='autumn', \
+    cscale=[-0.1,0.1],\
+    new_figure=True, \
+    colorbar=True, \
+    render='matplotlib')
+
+```
+Example output:
+![flatmap_cifti example](/assets/flatmapping_cifti_example.png)
