@@ -26,39 +26,47 @@ and follow it with your markdown content.
 
 
 
-## Install Jekyll
+## Building Local - Install Jekyll
+If you want to build and test changes to the WIKI locally, you need an installation of Jekyll 
 
 General instruction:
-https://jekyllrb.com/docs/installation/macos/
+https://jekyllrb.com/docs/installation
 
-On my mac
-ruby-install ruby 3.1.3
 
-Failed, so I installed ruby with brew
-
-brew install ruby
-
-And added
-
-to .zshrc
-
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
-
-bundle install
-
-## Local build
+One you have everything installed you can call: 
 
 ```
 bundle exec jekyll serve
 ```
 
-## Deploy
+and paste the URL into your web-browser. Everytime you save a change to the files in the WIKI, the website will automatically update! 
+
+###  Tips for installing on MacOSX 
+
+First, make sure you have the developer commandline tools installed (gcc, g++, git). 
+If not, you do **not** need the full 40GB of Xcode, just follow these instructions to get the command-line tools only: 
+[https://www.freecodecamp.org/news/install-xcode-command-line-tools/](https://www.freecodecamp.org/news/install-xcode-command-line-tools/)
+
+On my mac, following the Jekyll instructions above and use
+`ruby-install ruby 3.1.3`
+Failed, so I installed ruby with brew
+
+`brew install ruby`
+
+And added to .zshrc
 
 ```
-bundle exec jekyll build
+export PATH="/usr/local/opt/ruby/bin:$PATH"
 ```
+
+After restarting the terminal, I could install bundler and jekyll with
+
+`gem install jekyll`
+
+and 
+
+`bundle install`
+
 
 ## Read more
 
