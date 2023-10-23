@@ -21,7 +21,7 @@
 title: Diedrichsen Lab
 email:
 description: >- # this means to ignore newlines until "baseurl:"
-  A guide to standardized lab procedures and protocols at the Diedrichsen Lab.
+  A guide to lab procedures and protocols at the Diedrichsen Lab.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://diedrichsenlab.github.io" # the base hostname & protocol for your site, e.g. http://example.co
 twitter_username: diedrichsenlab
@@ -44,6 +44,7 @@ collections:
 
 # Build settings
 theme: minima
+markdown: kramdown
 # remote_theme: sighingnow/jekyll-gitbook
 plugins:
   - jekyll-feed
