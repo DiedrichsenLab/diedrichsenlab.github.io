@@ -12,11 +12,11 @@ Writing clean code is therefore an essential skill. Like writing clear papers, t
 
 ## Spotting bad code
 
-You are likely the least qualified person to judge the quality of your own code. It works, right? It solves the problem that you wanted to solve? You understand what it does and  how to call? So it must be good - no?
+Don't worry - of course *your* code is good. It works, right? You understand what it does and how to call it? It does exactly what you want it to do in one line? So it must be good - no? Unfortunately, you are likely the least qualified person to judge the quality of *your* code.
 
 ![WTF/minute](/assets/coding_wtfm.jpg)
 
-The ultimate judge of your code quality is a new student to the lab who wants to build upon your project. It's the person that is trying to replicate your paper. It's the person that wants to use your analysis technique. So even if you already write pretty clean code - it can always be better. And that takes work and attention to detail.
+A better judge of your code is a new student to the lab who wants to build upon your project. It's the person that is trying to replicate your paper. It's the person that wants to use your analysis technique. So even if you already write pretty clean code - it can always be better. And that takes work and attention to detail.
 
 Here are some signs of bad code:
 
@@ -46,7 +46,7 @@ Not all code requires the same level of scrutiny and care. I think we can distin
 Many projects and repositories contain code at different levels. Keep them separate. A good practice is to place general tools (classes and functions) in modules at the root of the directory, so they can be easily imported. Place project-specific code in a `scripts` or `notebooks` directory. If you find that you want to use the same code in multiple scripts, it belongs in a module. Place your dirty underwear in a appropriately named directory - `scrapheap` or  `scratch`  comes to mind.
 
 ## Meaningful Names
-Name things in a way that makes clear what they are. There are tons of rules on naming out there, but remember that the main point is to make the code easily readable. The better your names are, the less comments you need to write.
+Name things in a way that makes clear what they are. There are many rules on naming out there, but remember that the main point is to make the code easily readable. The better your names are, the less comments you need to write.
 
 ### Variables
 
@@ -74,7 +74,7 @@ When you use short forms, just make sure the meaning of the variable is defined 
 Where variable names should begin with a noun, function names should start with a verb. `get_data` retrieves some data. `set_param` sets a parameters. `compute_t_stats` computes a t_statistics. `func1`, `my_secret_weapon`, or `tmp` are not good names.
 
 ### Classes
-Classes describe *Objects*, who have both features (attributes) and behaviors (function). Class names should be nouns - and in the lab code we usually use CamelCase for them (where otherwise we use understroke). So `Nifti1Volume` is a good class name.
+Classes describe *Objects*, who have both features (attributes) and behaviors (function). Class names should be nouns, start with a capital letter, in the lab code we use CamelCase for them (where otherwise we use understroke). So `Nifti1Volume` is a good class name.
 
 Often you have a whole collection of classes, all inheriting from a superclass. It is good practice to start the class name with the superclass. `AtlasSurface` and `AtlasVolume` is good, as this naming works well with tab-completion: By typing `Atlas<tab>` you can see immediately all available Atlas classes. While `SurfaceAtlas` and `VolumeAtlas` roll better of the tongue, tab completion does not work well.
 
@@ -119,21 +119,37 @@ def my_function(data,
 Comments within the code should be used sparingly. Structure different steps in the code with blank lines.
 
 ## Clean data structures
+So far we have talked about the *Micro-structure* of code - how to name things, how to comment. The most important difference between good and bad code often lies in its *Marco-structure*. For any software project the Marco-structure consists of Data Structures, and the processes between them.
+
 Bad code writing often starts with bad decision about the underlying data structures. If you have a lot of code that wrangles your data from one structure into the next, you probably made some bad decisions about how to store and organize your data.
 
 
 
+
+
+
+To summarize:
+
+* Data structures should be simple and consistent within themselves
+* If you can, use file- and data-formats that are established in the lab and the community
+* Do not have multiple data structures that do similar thing. It should be clear which on to use.
+* There should be only one way of going from one data structure to another.
+
+
+
 ## Functions and factorization
-Functions should do one thing
 
-They should do this thing well
 
-They should be the only thing in your code that does this thing
 
+To summarize:
+
+* Functions should do one thing
+* They should do this thing well
+* They should be the only thing in your code that does this thing
+* Refactorize
 
 ## Classes
 
-## Overall Software Structure
 ## Computational Efficiency
 ## Backwards Compatibility
 
