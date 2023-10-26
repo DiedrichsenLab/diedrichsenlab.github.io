@@ -225,5 +225,25 @@ $$
 Where $$\hat{\beta}$$ is the parameter estimate, $$\hat{\Sigma}$$ is the variance-covariance matrix of the parameter estimates (xX.Bcov) and $$\hat{\sigma}^2$$ is the residual variance (xX.trRV/xX.erdf). stored in the ResMS.nii file.
 
 ## Optimal contrast weights
+Sometimes you have a GLM with pretty extensive design matrix (superset)
 
+$$
+\mathbf{y} = \mathbf{X} \boldsymbol{\beta} + \epsilon\\
+\hat{\boldsymbol{\beta}}=(\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{y}
+$$
 
+And want to know what estimates / contrast as simpler GLM where the regressors are some linear combinations of the existing regressors.  
+Then you are interested in a linear subspace, i.e. the projection on a arbitrary new design matrix: 
+
+$$
+\mathbf{Z}=\mathbf{XC}
+$$
+
+Then you can simply obtain any new beta estimate by re-weighting the old estimates
+
+$$
+\boldsymbol{\gamma}=(\mathbf{C}^T\mathbf{X}^T\mathbf{X}\mathbf{C})^{-1}\mathbf{C}^T\mathbf{X}^T\mathbf{y}\\
+=(\mathbf{C}^T\mathbf{X}^T\mathbf{X}\mathbf{C})^{-1}\mathbf{C}^T\mathbf{X}^T\mathbf{X}\hat{\boldsymbol{\beta}}\\
+$$
+
+Example: see Jupyter notebook - Mumford-Neuroimage_2011
