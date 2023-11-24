@@ -16,7 +16,8 @@ Don't worry - of course *your* code is good. It works, right? You understand wha
 
 ![WTF/minute](/assets/coding_wtfm.jpg)
 
-A better judge of your code is a new student to the lab who wants to build upon your project. It's the person that is trying to replicate your paper. It's the person that wants to use your analysis technique. So even if you already write pretty clean code - it can always be better. And that takes work and attention to detail.
+A better judge of your code is a new student to the lab who wants to build upon your project. It's the person that is trying to replicate your paper. It's the person that wants to use your analysis technique. In sum, **you only have written good code, when other people are using, it really like you because of it.**
+So even if you already write pretty clean code - it can always be better. And that takes work and attention to detail.
 
 Here are some signs of code that requires improvement:
 
@@ -25,6 +26,7 @@ Here are some signs of code that requires improvement:
 * You have to look up the name, input or output arguments of a function you wrote
 * You discover that you have written two functions that do very similar things
 * You know that you have solved this problem before, but you cannot find the code or remember how you did it
+* Half a year later, it takes you a while to figure out what the code actually does
 * Sharing your code online upon publication fills you with dread (or you secretly hope nobody will ever look at it)
 * Other people in the lab who do very related things write their own code, rather than using yours
 
@@ -167,18 +169,146 @@ Important data structures are stored on disk as files. In general, you want to c
 
 ## Workflows, Functions and Factorization
 
+Workflows are processes that transform one data structure into the next. When you just start programming, you will likely write a script to do this. Let's look at a typical example of this in pseudo-code, which fits a model to a specific subject's data:
+  
 
+```python
+    subj_name = 'sub-01'
+    model = 'model-specific'
+    # 1. Get the requried data file name 
+    file_name = f'{subj_name}_task-<exp>_run-01.dat'
+    .... # Code that deals with different directory structures and file formats
+    # Load the data file 
+    ... 
+    # Get the model 
+    model_file_name = ... # Some more complicated rules about naming of the model 
+    # Load the model 
+    ... 
+    # Do some preprocessing on the data 
+    ...
+    # Generate some starting values for the model fit 
+    ... 
+    # Loop over model fits until convergence
+    ...
+    # Select the best fit
+    ,,,  
+    # Save the results into a specific file 
+    out_file_name = ... #  Some more complicated rules about naming / location of the output file
+    save_results(out_file_name)
+```
 
+Scripts are often long, hard to read, and not very reusable. So it is clearly time to refactor the script into different functions. But there are many ways to do this. The first step is to identify the elemental operations that your code does. This already pretty clear in the above example. Each of these elemental operations should be a function. The principle for these functions should be: 
 
-To summarize:
-
-* Functions should do one thing
+* Elemental Functions should do one thing, and one thing only
 * They should do this thing well
-* They should be the only thing in your code that does this thing
-* Refactorize
+* Ideally you make these functional reusable for other projects - so separate the project-specfic naming and file handling from the actual data processing
+* Inputs arguments to a function should be as few as possible. This is the **Mafia-principle of coding**: The guys that do the job on the street really should only know enough to do their job, but no more.  
+
+Once you achieve this, you should be able to make your process also into a function that may look like this: 
+
+```python
+    def fit_model_to_individual_data(subj_name, data_type, model_type,N-iter=20):
+        data_file_name = get_data_file_name(subj_name, data_type) 
+        data = load_data_file(data_file_name)
+        model_file_name = get_model_file_name(model_type)
+        model = load_model_file(model_file_name)
+        data = preprocess_data(data)
+        for i in range(n_iter):
+            starting_values = generate_starting_values(model)
+            params[i] = fit_model(data, model, starting_values)
+        best_fit = select_best_fit(fits)
+        result_file_name = get_result_file_name(subj_name, data_type, model_type)
+        save_results(result_file_name)
+```
+
+Yoy have achieved nirvana: Your code is so clean and readable that (except for the function definition), it does not require any comments. Of course it could be further imporved (see classes), but you are off to a good start. 
+On top of this process-function, you finally will have scripts that call this process for a particular set of models and subjects.)
+
+```python
+    info = pd.read_csv('participants.tsv',sep='\t')
+    model = ['model1', 'model2']
+    for m in models: 
+        for subj in info['participant_id']:
+            fit_model_to_individual_data(subj, data_type, m)
+```
+
+What makes this code readable and easy to understand: 
+
+* You have three levels of functions: Elemental functions, process functions, and scripts. Each level calls only the subordinate level. 
+* Elemental function have one single function and an appropriate name
+* They only receive the information they need to do their job
+
+This is easy, right? But it is actually often very hard to achieve. 
+One common problems that occur is that code is **wrapped uneccessarily**. For example, you maybe tempted to combine certain steps in the process function. On the postive side, your code will be shorter and may have less repetition of code. On the negative side, you now have 4 levels of code. So for a new person to figure out what is going on, they have to go through all those levels. You are also adding a lot of lines of code just to pass the arguments from one function to the next. A good practice is to determine the **call depth** of your code and ensure that it is as small (shallow) as possible, while still being readable.
+
+Another problem is that you violate a clear hierarchical structure of the code. Process function calling other process functions. Elemental functions call other elemental functions, or even process functions. Elemental functions that can't be reused, as they make specific assumptions about filename / directory structure. In all these cases, take some time and refactor your code. 
 
 ## Classes
 
+Object-oriented programming is an advanced and powerful tool for designing clean code. If you use Python, any variable you are using is already inherently an object. In Matlab, object orientation is a clear afterthought. 
+
+When should you define a new class? Usually I use classes only when all of the following criteria are met:
+
+* You have **things** (objects) that have multiple data members (attributes) 
+* You have multiple functions that operate on the similar data members 
+* You have multiple types of objects that all are behaving in a similar way, but have some differences
+
+If only the first condition is true, you should use a *dictionary*. If the second case is true, you will collect these functions into a *module*. However, the power Object oriented programming comes in when the third criterion is also true. 
+
+A classical example is the definition of different types of models, each of which has certain parameters, and a function that fits the model to the data. Let's look at an object oriented version of the model fitting example above. 
+
+```python
+    class Model:
+        def __init__(self, name, params):
+            self.name = name
+            self.params = params
+        def generate_starting_values(self):
+            self.params = ....
+        def fit(self, data):
+            ...
+        def save(self, file_name):
+            ...
+        
+    class Model1(Model):
+        def __init__(self, params):
+            super().__init__('model1', params)
+        def fit(self, data):
+            ...
+
+    def fit_model_to_individual_data(subj_name, data_type, model_type,N-iter=20):
+        data_file_name = get_data_file_name(subj_name, data_type) 
+        data = load_data_file(data_file_name)
+
+
+        data = preprocess_data(data)
+        
+        for i in range(n_iter):
+            model[i] = get_model(model_type)
+            model[i].generate_starting_values()
+            model[i].fit(data)
+        best_fit = select_best_fit(model)
+        result_file_name = get_result_file_name(subj_name, data_type, model_type)
+        mdoel.save(result_file_name)
+```
+
+You can see that the code is a bit longer than the non-object oriented version above. However, the advantage really arises when you also define an `Model2` and `Model3`. In standard programming, you would need to write: 
+
+```python
+    if model_type == 'model1':
+        params[i] = fit_model1(data, model, starting_values)
+    elif model_type == 'model2':
+        params[i] = fit_model2(data, model, starting_values)
+    elif model_type == 'model3':
+        params[i] = fit_model3(data, model, starting_values)
+```
+
+and again for saving, prediction, etc. With Object oriented programming, you can just write: 
+
+```python
+    model.fit(data)
+```
+
+And Python will select the right fitting routine, depending on the object type of `model`.
 
 
 
@@ -188,6 +318,19 @@ To summarize:
 
 ## Backwards Compatibility
 
+
+## Clean up! 
+Have you ever worked on a construction site? If you have, you know that the last half hour of every working day is dedicated to cleaning up your tools remove any debris, and make sure that the things you build are clean. Otherwise people get injured tomorrow.  
+
+You should do the same every day with your code before you stop working. 
+
+* Delete all unnecessary files and directories that you produced
+* Delete all code that your tried out, but did not work
+* Move things you want to keep for later into a 'depreciated' directory
+* Remove all dependencies that are not used anymore (import)
+* Remove all variables that you are not using anymore
+* Make sure the things your produced live up to the standard we expect (naming, structure, comments, etc)
+* Commit you code to git 
 
 ## Read more
 
