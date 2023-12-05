@@ -1,6 +1,4 @@
 ---
 layout: page
-title: Tutorial 1
+title: No tutorials yet.
 ---
-
-Content for the tutorial.
