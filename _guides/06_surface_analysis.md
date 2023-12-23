@@ -68,29 +68,6 @@ Remove the pial surface and add the white matter surface reconstruction. Make su
 Focus on the white matter surface going into the coronal T1 slice, not the saggital slice. Since the white matter connects the hemispheres only at the corpus callosum, which is hidden behind the rest of the white matter in this view, it's hard to spot mismatches to the saggital T1 slice. Instead, look at where the white matter surface enters the coronal slice and the axial slice.
 
 
-
-### Functional Data
-
-#### Group Averaged Functional Data
-
-To check whether your functional data makes sense, you can average the activity across all your subjects for each task or task condition. For visualising the group average in surface space, it is useful to save it as a cifti file. You can find a good introduction to cifti files and some resources to get you started [here](https://mandymejia.com/2015/08/10/a-laymans-guide-to-working-with-cifti-files/).
-
-After saving your group average activation maps as a cifti file, open the group averaged data in the workbench viewer (```wb_view```). Depending on which space you the data is in, you will first have to load the space defining file. For example, if you want to insepct data on the fs32k surfaces, you will first have to load the .spec file for the fs32k space. Afterwards, you can load in the group average cifti file.
-
-Look at some contrasts you are familiar with and where you know what to expect. For example, a left hand movement task should give you high activation in the right M1 hand area:
-
-<img src="./left_hand.png" alt="LeftHandActivation" width="500"/>
-
-And the right hand movement task should give you left M1 hand area activation.
-
-<img src="./right_hand.png" alt="RightHandActivation" width="500"/>
-
-You can also check visual tasks, where you would expect activation in the visual cortices:
-
-<img src="./visual_task.png" alt="VisualTaskActivation" width="500"/>
-
-These inspections should confirm that on average, you are seeing activity in the areas that you would expect for the different tasks.
-
 ## Step3: Transforming to fs_LR space
 The next step is to resample the individual surface from fsaverage space (e.g., the Freesurfer output created in Step 1) into fs_LR space. You can do this by calling the Matlab toolbox function:
 ```
