@@ -31,6 +31,66 @@ This process take several hours (or more) per subject, and produces freesurfer f
 
 ## Step2: Checking the individual surface reconstruction
 
+### Surfaces
+
+To check that surfaces were reconstructed correctly and match the T1, pull up workbench:
+
+```
+wb_view
+```
+
+#### Pial Surface
+
+Open the native space T1 (for example sub-01_T1w.nii) and the pial surfaces for the left and right hemisphere (sub-01_space-32k_hemi-L_white.surf.gii & sub-01_space-32k_hemi-R_pial.surf.gii ). In the montage tab, click on ```All``` (is set to ```Montage``` by default). You might have to also click ```On``` for the T1 image in the overlay toolbox to show the T1.
+
+<img src="./wb_gui.png" alt="Workbench GUI Settings" width="400"/>
+
+
+You should now see the T1 image and reconstructed pial surface. Rotate the image to see whether the surface is aligned with the sulci in the T1. An extreme mismatch would look like this:
+
+<img src="./surface_check_1.png" alt="PialSurface_largeOffset" width="400"/>
+
+A subtler mismatch of the right hemisphere could look like this:
+
+<img src="./surface_check_2.png" alt="PialSurface_slightOffset" width="400"/>
+
+And here is a perfect match between pial surface and T1 image:
+
+<img src="./surface_check_3.png" alt="PialSurface_Match" width="400"/>
+
+#### White Matter Surface
+
+Remove the pial surface and add the white matter surface reconstruction. Make sure you removed the pial surface from you viewer, otherwise you won't see the white matter surface under the pial surface. Follow the same process as for the pial surface check, click on ```All``` and rotate the image to see how T1 and the white matter surface align. Mismatches for the white matter surface should be easy to spot since the white matter surface at the cortex should neatly fit into the grey matter on the T1 like below.
+
+<img src="./surface_check_4.png" alt="WMSurface_Match" width="600"/>
+
+
+Focus on the white matter surface going into the coronal T1 slice, not the saggital slice. Since the white matter connects the hemispheres only at the corpus callosum, which is hidden behind the rest of the white matter in this view, it's hard to spot mismatches to the saggital T1 slice. Instead, look at where the white matter surface enters the coronal slice and the axial slice.
+
+
+
+### Functional Data
+
+#### Group Averaged Functional Data
+
+To check whether your functional data makes sense, you can average the activity across all your subjects for each task or task condition. For visualising the group average in surface space, it is useful to save it as a cifti file. You can find a good introduction to cifti files and some resources to get you started [here](https://mandymejia.com/2015/08/10/a-laymans-guide-to-working-with-cifti-files/).
+
+After saving your group average activation maps as a cifti file, open the group averaged data in the workbench viewer (```wb_view```). Depending on which space you the data is in, you will first have to load the space defining file. For example, if you want to insepct data on the fs32k surfaces, you will first have to load the .spec file for the fs32k space. Afterwards, you can load in the group average cifti file.
+
+Look at some contrasts you are familiar with and where you know what to expect. For example, a left hand movement task should give you high activation in the right M1 hand area:
+
+<img src="./left_hand.png" alt="LeftHandActivation" width="500"/>
+
+And the right hand movement task should give you left M1 hand area activation.
+
+<img src="./right_hand.png" alt="RightHandActivation" width="500"/>
+
+You can also check visual tasks, where you would expect activation in the visual cortices:
+
+<img src="./visual_task.png" alt="VisualTaskActivation" width="500"/>
+
+These inspections should confirm that on average, you are seeing activity in the areas that you would expect for the different tasks.
+
 ## Step3: Transforming to fs_LR space
 The next step is to resample the individual surface from fsaverage space (e.g., the Freesurfer output created in Step 1) into fs_LR space. You can do this by calling the Matlab toolbox function:
 ```
