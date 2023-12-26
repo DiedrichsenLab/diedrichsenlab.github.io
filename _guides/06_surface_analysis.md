@@ -20,6 +20,7 @@ There are downsampled version fsaverage6 and fsaverage5 with 40962 and 10242 ver
 For our studies, it is often useful to have a surface that is defined in a symmetric way across the left and right hemisphere. In the connectome workbench a emerging standard here is the fs_LR surface. A vertex with a specific number will refer to roughly homologous areas in both hemispheres. The fs_LR comes in three sample resolutions: 32k, 59k, and 164k. For standard functional imaging analysis with a functional voxel size of >1.4mm, the 32k surface has high enough resolution to give at least one vertex per gray matter voxel.
 
 # Our basic individual surface pipeline
+
 ## Step 1: Individual surface reconstruction
 Individual surface reconstruction is performed by freesurfer software, using recon-all. What is needed is a 3D T1-weighted image (ideally 1mm resolution or better) of the subject's anatomy.
 ```
