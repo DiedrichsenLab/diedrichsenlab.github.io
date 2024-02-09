@@ -24,12 +24,13 @@ Autobids is a pipeline maintained by the Khan lab that transforms the raw imagin
 3. **Globus Setup**: 
     - Sign up for a [Globus account](http://app.globus.org/). You can use your UWO credentials to sign up.
     - Install the [Globus Connect Personal](https://www.globus.org/globus-connect-personal) on your computer.
-4. **Downlaod Data**: 
+4. **Data Downlaod**: 
     - Once your study is registered with autobids and you collect new data, your study specific pipeline will be applied and the data will be available on Globus for you to download.
     - Login to globus and navigate to the "COLLECTIONS" tab. You should see your BIDS converted data shared with you.
     - "autobids_study_{name}_type_{type}" is the folder that contains the BIDS converted data.
     - Collection type is provided in both "rawdata" (DICOM to Nii converted and renamed to BIDS format) or "derivedata" (DICOM to Nii converted, renamed to BIDS format and gradcorrect applied).
 
+# Questions?
 For more information about autobids, please visit the [OSF autobids guide](https://osf.io/k89fh/wiki/autobids/).
 
 If you have any questions, please contact Jason Kai at:
