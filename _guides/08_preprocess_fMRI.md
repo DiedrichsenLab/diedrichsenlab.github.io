@@ -15,7 +15,7 @@ Autobids is a pipeline maintained by the Khan lab that transforms the raw imagin
 
 [Gradcorrect](https://github.com/khanlab/gradcorrect) which calls [gradunwarp](https://github.com/kaitj/gradunwarp), adapted from the workflow used in HCP data correction. 
 
-Steps for getting your data into BIDS format:
+## Steps for getting your data into BIDS format:
 
 1. **Study Registration**: 
     - Register your study through the [autobids new study form](https://autobids-uwo.ca/new).
