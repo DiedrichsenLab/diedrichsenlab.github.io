@@ -8,12 +8,20 @@ usemathjax: true
 
 * [Matlab DataFrame toolbox](https://github.com/jdiedrichsen/dataframe)
 * SPM12
-
+* Freesurfer
+* FSL
 
 ## Autobids
 Autobids is a pipeline maintained by the Khan lab that transforms the raw imaging data from DICOM (Properiatary Siemens format) to nifti files, renames them in BIDS standard, and applies gradient nonlinearity correction to the images as appropriate (gradcorrect). 
 
-[Gradcorrect](https://github.com/khanlab/gradcorrect which calls [gradunwarp](https://github.com/kaitj/gradunwarp), adapted from the workflow used in HCP data correction. 
+[Gradcorrect](https://github.com/khanlab/gradcorrect) which calls [gradunwarp](https://github.com/kaitj/gradunwarp), adapted from the workflow used in HCP data correction. 
+
+For information on AutoBIDS, see the following [documentation](https://osf.io/k89fh/wiki/autobids/?view_only=8281493cc75d429285735c98c1267261) 
+
+Ask Bassel for help with setting up Autobids for your project. 
+
+@Bassel: Please add the steps for setting up Autobids here.
+
 
 **Result**: BIDS-directory
 
