@@ -28,9 +28,6 @@ twitter_username: diedrichsenlab
 github_username:  DiedrichsenLab
 
 header_pages:
-  - about.md
-  - guides.md
-  - tutorials.md
   - contact.md
 
 # make collections sublist
