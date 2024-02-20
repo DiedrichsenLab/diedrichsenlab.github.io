@@ -56,7 +56,7 @@ If you have any questions, please contact Jason Kai at:
 # Functional pipeline:
 1. **Move from BIDS**
     - (Optional) Unzip, move and rename fmap phase and magnitude from BIDS to fieldmaps/subj_id/sess&lt;sess number&gt;/&lt;subj_id&gt;_magnitude.nii and &lt;subj_id&gt;_phase.nii
-    - Unzip, move and rename functional runs from BIDS to imaging_data_raw/subj_id/sess&lt;sess number&gt;/&lt;subj_id&gt;_run_&lt;run number&gt;.nii
+    - Unzip, move and rename functional runs from BIDS to imaging_data_raw/subj_id/sess&lt;sess number&gt;/&lt;subj_id&gt;\_run\_&lt;run number&gt;.nii
 
 
 **Result**: The anatomicals/subj_id/anatomical.nii file is the image that defines individual subject space. 
