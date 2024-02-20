@@ -40,7 +40,9 @@ If you have any questions, please contact Jason Kai at:
 
 1. **Move from BIDS**
     - Unzip, move and rename T1 anatomical from BIDS to <code>anatomicals/subj_id/&lt;subj_id&gt;_anatomical.nii</code>.
-    Use <code style="color:red";>template_imana('BIDS:move_unzip_raw_anat', 'sn', &lt;subj number&gt;)</code>
+    '''
+    <code style="color:red";>template_imana('BIDS:move_unzip_raw_anat', 'sn', &lt;subj number&gt;)</code>
+    '''
 2. **Reslice LPI**
     - Reslice anatomical image within LPI coordinate systems
 3. **Center AC**
