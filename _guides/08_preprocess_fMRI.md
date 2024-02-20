@@ -39,7 +39,7 @@ If you have any questions, please contact Jason Kai at:
 # Anatomical pipeline pre-freesurfer: 
 
 1. **Move from BIDS**
-    - Unzip, move and rename T1 anatomical from BIDS to anatomicals/subj_id/&lt;subj_id&gt;_anatomical.nii
+    - Unzip, move and rename T1 anatomical from BIDS to <code>anatomicals/subj_id/&lt;subj_id&gt;_anatomical.nii</code>
 2. **Reslice LPI**
     - Reslice anatomical image within LPI coordinate systems
 3. **Center AC**
