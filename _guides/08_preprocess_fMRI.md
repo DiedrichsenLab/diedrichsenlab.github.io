@@ -39,7 +39,8 @@ If you have any questions, please contact Jason Kai at:
 # Anatomical pipeline pre-freesurfer: 
 
 1. **Move from BIDS**
-    - Unzip, move and rename T1 anatomical from BIDS to <code>anatomicals/subj_id/&lt;subj_id&gt;_anatomical.nii</code>
+    - Unzip, move and rename T1 anatomical from BIDS to <code>anatomicals/subj_id/&lt;subj_id&gt;_anatomical.nii</code>.
+    Use <code style="color=red";>template_imana('BIDS:move_unzip_raw_anat', 'sn', &lt;subj number&gt;)</code>
 2. **Reslice LPI**
     - Reslice anatomical image within LPI coordinate systems
 3. **Center AC**
@@ -47,17 +48,18 @@ If you have any questions, please contact Jason Kai at:
 4. **Segmentation and Normalization** 
     - Run the SPM12 batch script for segmentation and normalization
 5. **Optional**
-    - Unzip, move and rename T2 anatomical from BIDS to anatomicals/subj_id/&lt;subj_id&gt;_T2anatomical.nii
+    - Unzip, move and rename T2 anatomical from BIDS to <code>anatomicals/subj_id/&lt;subj_id&gt;_T2anatomical.nii</code>
     - Coregister T2 to T1
 
-**Result**: The anatomicals/subj_id/anatomical.nii file is the image that defines individual subject space. 
+**Result**: The <code>anatomicals/subj_id/anatomical.nii</code> file is the image that defines individual subject space. 
 **DO NOT CHANGE THIS IMAGE ANYMORE AFTERWARDS!!**
 
 # Functional pipeline:
 1. **Move from BIDS**
-    - (Optional) Unzip, move and rename fmap phase and magnitude from BIDS to fieldmaps/subj_id/sess&lt;sess number&gt;/&lt;subj_id&gt;_magnitude.nii and &lt;subj_id&gt;_phase.nii
-    - Unzip, move and rename functional runs from BIDS to imaging_data_raw/subj_id/sess&lt;sess number&gt;/&lt;subj_id&gt;\_run\_&lt;run number&gt;.nii
+    - (Optional) Unzip, move and rename fmap phase and magnitude from BIDS to <code>fieldmaps/subj_id/sess&lt;sess number&gt;/&lt;subj_id&gt;_magnitude.nii</code> and <code>&lt;subj_id&gt;_phase.nii</code>
+    - Unzip, move and rename functional runs from BIDS to <code>imaging_data_raw/subj_id/sess&lt;sess number&gt;/&lt;subj_id&gt;\_run\_&lt;run number&gt;.nii</code>
 
+2. ****
 
 **Result**: The anatomicals/subj_id/anatomical.nii file is the image that defines individual subject space. 
 
