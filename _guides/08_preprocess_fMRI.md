@@ -36,20 +36,19 @@ For more information about autobids, please visit the [OSF autobids guide](https
 If you have any questions, please contact Jason Kai at:
 - Email: tkai@uwo.ca
 
-## OPTIONAL FOR OLD PIPELINES: Changing naming from BIDS to the shorter names for the lab standard 
+# Anatomical pipeline pre-freesurfer: 
 
-**Result**: imaging_data_raw/subj_id/ .... 
-
-with the appropriately named files. 
-Skip this ideally. 
-
-## Anatomical pipeline pre-freesurfer: 
-
-* Unzip, move and rename T1 anatomical to anatomicals/subj_id/anatomical.nii
-* Set AC in T1 anatomical
-* Run the SPM12 batch script for segmentation and normalization. 
-* Unzip, move and rename T2 anatomical to anatomicals/subj_id/T2anatomical.nii (optional)
-* Coregister T2 to T1 (optional)
+1. **Move from BIDS**
+    - Unzip, move and rename T1 anatomical from BIDS to anatomicals/subj_id/anatomical.nii
+2. **Reslice LPI**
+    - Reslice anatomical image within LPI coordinate systems
+3. **Center AC**
+    - Set AC in T1 anatomicals
+4. **Segmentation and Normalization** 
+    - Run the SPM12 batch script for segmentation and normalization. 
+5. **Optional**
+    - Unzip, move and rename T2 anatomical from BIDS to anatomicals/subj_id/T2anatomical.nii
+    - Coregister T2 to T1
 
 **Result**: The anatomicals/subj_id/anatomical.nii file is the image that defines individual subject space. 
 **DO NOT CHANGE THIS IMAGE ANYMORE AFTERWARDS!!**
