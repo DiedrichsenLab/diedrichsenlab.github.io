@@ -39,7 +39,7 @@ If you have any questions, please contact Jason Kai at:
 # Anatomical pipeline pre-freesurfer: 
 
 1. **Move from BIDS**
-    - Unzip, move and rename T1 anatomical from BIDS to anatomicals/subj_id/\<subj_id>_anatomical.nii
+    - Unzip, move and rename T1 anatomical from BIDS to anatomicals/subj_id/&lt;subj_id&gt;_anatomical.nii
 2. **Reslice LPI**
     - Reslice anatomical image within LPI coordinate systems
 3. **Center AC**
@@ -47,7 +47,7 @@ If you have any questions, please contact Jason Kai at:
 4. **Segmentation and Normalization** 
     - Run the SPM12 batch script for segmentation and normalization
 5. **Optional**
-    - Unzip, move and rename T2 anatomical from BIDS to anatomicals/subj_id/T2anatomical.nii
+    - Unzip, move and rename T2 anatomical from BIDS to anatomicals/subj_id/&lt;subj_id&gt;_T2anatomical.nii
     - Coregister T2 to T1
 
 **Result**: The anatomicals/subj_id/anatomical.nii file is the image that defines individual subject space. 
@@ -55,8 +55,8 @@ If you have any questions, please contact Jason Kai at:
 
 # Functional pipeline:
 1. **Move from BIDS**
-    - (Optional) Unzip, move and rename fmap phase and magnitude from BIDS to fieldmaps/subj_id/sess\ <i>/subj_id_magnitude.nii and subj_id_phase.nii
-    - Unzip, move and rename functional runs from BIDS to fieldmaps/subj_id/sess\ <i>/subj_id_magnitude.nii and subj_id_phase.nii
+    - (Optional) Unzip, move and rename fmap phase and magnitude from BIDS to fieldmaps/subj_id/sess&lt;sess numer&gt;/&lt;subj_id&gt;_magnitude.nii and &lt;subj_id&gt;_phase.nii
+    - Unzip, move and rename functional runs from BIDS to imaging_data_raw/subj_id/sess&lt;sess numer&gt;/&lt;subj_id&gt;_run_&lt;run number&gt;.nii
 
 
 **Result**: The anatomicals/subj_id/anatomical.nii file is the image that defines individual subject space. 
