@@ -45,7 +45,7 @@ If you have any questions, please contact Jason Kai at:
 3. **Center AC**
     - Set AC in T1 anatomicals
 4. **Segmentation and Normalization** 
-    - Run the SPM12 batch script for segmentation and normalization. 
+    - Run the SPM12 batch script for segmentation and normalization
 5. **Optional**
     - Unzip, move and rename T2 anatomical from BIDS to anatomicals/subj_id/T2anatomical.nii
     - Coregister T2 to T1
@@ -53,8 +53,12 @@ If you have any questions, please contact Jason Kai at:
 **Result**: The anatomicals/subj_id/anatomical.nii file is the image that defines individual subject space. 
 **DO NOT CHANGE THIS IMAGE ANYMORE AFTERWARDS!!**
 
+# Functional pipeline:
+1. **Move from BIDS**
+    - (Optional) Unzip, move and rename fmap from BIDS to fieldmaps/subj_id/sess<\i>/anatomical.nii
+
+
+**Result**: The anatomicals/subj_id/anatomical.nii file is the image that defines individual subject space. 
+
+
 ## Freesurfer pipeline 
-
-## 
-
-
