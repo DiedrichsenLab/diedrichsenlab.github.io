@@ -104,7 +104,7 @@ OR
 {% highlight matlab %}template_imana('FUNC:realign', 'sn', subj_number, ...
                                'rtm', reference_image_option){% endhighlight %}
 
-- ***rtm*** **option:** *rtm* is short for *register to mean*. If this option is set as 0, SPM aligns all the volumes in a session to the 1st volume of the first run. If set as 1, SPM first aligns to the first volume and then aligns to *mean of all volumes of all runs*. 
+- ***'rtm'*** **option:** *rtm* is short for *register to mean*. If this option is set as 0, SPM aligns all the volumes in a session to the 1st volume of the first run. If set as 1, SPM first aligns to the first volume and then aligns to *mean of all volumes of all runs*. 
 
 4&#46; **Move Realigned Images**
 - move the realigned (& unwarped) images from <code>imaging_data_raw</code> to <code>imaging_data/sess&lt;sess_number&gt;/&lt;prefix&gt;&lt;subj_id&gt;_run_&lt;run_number&gt;.nii</code>
@@ -113,7 +113,40 @@ OR
                                              'rtm', reference_image_option, ...
                                              'prefix', prefix_for_functional_files){% endhighlight %}
 
-- ***'prefix'* option:** 
+- ***'prefix'* option:** SPM tends to add prefix to file names after running specific processes. Here if you run <code>spm_realign()</code> on the raw functional images, it will add <code>r</code> as a prefix for the **r**ealigned file. If you run <code>spm_realign_unwarp()</code> SPM will add <code>u</code> as the prefix denoting the files are **u**nwarped and realigned. Depending on what you used in **step 3**, you should set the proper *prefix*.
+
+5&#46; **Mean Image Bias Correction**
+- In **step 3** we did realign (& unwarp) process on the functional images of each session. Realign (& unwarp) produces a *mean image* based on *rtm* (refer to step 3) based on the option you use. We will use this *mean image* as a reference to register our functional images to the anatomical image. But to improve the coregistration step, we first to a mean bias correction to this mean image. 
+- This step results in a new *mean image* file with prefix <code>b</code> denoting **b**ias corrected image.
+
+{% highlight matlab %}template_imana('FUNC:meanimage_bias_correction', 'sn', subj_number, ...
+                                                 'rtm', reference_image_option, ...
+                                                 'prefix', prefix_for_functional_files){% endhighlight %}
+
+6&#46; **Coregistration of Funcational To Anatomical**
+- The goal here is to register the functional images to the anatomical images within each subject. Doing this step we achieve two things: 1) All functional images of different sessions/days will exist in the same coordinates and are aligned to each other. 2) All your functional data will be aligned to the anatomical brain regions, so you know what area you are looking at. 
+- All the functional volumes of each session are aligned to the *mean image* we corrected in **step 5**. Therefore, we just need to find the transformation matrix that registers the *mean image* to the anatomical image. Finally, we can use the estimated transformation matrix to bring all the functional volumes to the anatomical coordinates. 
+
+1. Manually do the functional/anatomical registration to ensure a better registration:
+    - Open fsleyes
+    - Add anatomical image and b*mean*.nii (bias corrected mean) image to overlay
+    - click on the bias corrected mean image in the 'Overlay list' in the bottom left of the fsleyes window. list to highlight it.
+    - Open tools -> Nudge
+    - Manually adjust b*mean*.nii image to the anatomical by changing the 6 paramters (tranlation xyz and rotation xyz) and Do not change the scales! 
+    - When done, click apply and close the tool tab. Then to save the changes, click on the save icon next to the mean image  name in the 'Overlay list' and save the new image by adding 'r' in the beginning of the name: rb*mean*.nii. If you don't set the format to be .nii, fsleyes automatically saves it as a .nii.gz so either set it or gunzip afterwards to make it compatible with SPM.
+
+1. Run the automatic registration code:
+
+{% highlight matlab %}template_imana('FUNC:coreg', 'sn', subj_number, ...
+                             'rtm', reference_image_option, ...
+                             'prefix', prefix_for_functional_files){% endhighlight %}
+
+- This process only estimates a transformation matrix. It does not do any reslicing or smoothing. The registration is a rigid transformation (3 x,y,z translation parameters and 3 rotation parameters; overall 6 params). 
+
+
+7&#46; **Replace the Transformation Matrix of Functional Images**
+
+
 
 
 ## **Freesurfer pipeline:**
