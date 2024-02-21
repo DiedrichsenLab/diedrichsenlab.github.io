@@ -43,8 +43,8 @@ A <code>participants.tsv</code> file must be created for every fMRI project. Thi
 
 The code snippets are from the <code>template_imana.m</code> on [spmj_tools](https://github.com/DiedrichsenLab/spmj_tools) repository.
 
-1&#46; **Move from BIDS:**
-- Unzip, move and rename T1 anatomical from BIDS to <code>anatomicals/subj_id/&lt;subj_id&gt;_anatomical.nii</code>.
+1&#46; **Move from BIDS**
+- Unzip, move and rename T1 anatomical from <code>BIDS</code> to <code>anatomicals/subj_id/&lt;subj_id&gt;_anatomical.nii</code>.
     {% highlight matlab %}template_imana('BIDS:move_unzip_raw_anat', 'sn', subj_number){% endhighlight %}
 
 2&#46; **Reslice LPI**
@@ -65,7 +65,7 @@ The code snippets are from the <code>template_imana.m</code> on [spmj_tools](htt
 - **Results in** 5 .nii files starting with c1, c2, ..., c5. These are masks separating the anatomical image into 5 different segments such as *grey matter*, *white matter*, *skull*, etc. 
 
 5&#46; **Optional**
-- Unzip, move and rename T2 anatomical from BIDS to <code>anatomicals/subj_id/&lt;subj_id&gt;_T2anatomical.nii</code><br>
+- Unzip, move and rename T2 anatomical from <code>BIDS</code> to <code>anatomicals/subj_id/&lt;subj_id&gt;_T2anatomical.nii</code><br>
 - Coregister T2 to T1
 
 **DO NOT CHANGE THE ANATOMICAL IMAGE ANYMORE AFTERWARDS!!**
@@ -73,14 +73,47 @@ The code snippets are from the <code>template_imana.m</code> on [spmj_tools](htt
 ## **Functional pipeline:**
 The code snippets are from the <code>template_imana.m</code> on [spmj_tools](https://github.com/DiedrichsenLab/spmj_tools) repository.
 
-1&#46; **Move from BIDS**<br>
-    - (Optional) Unzip, move and rename fmap phase and magnitude from BIDS to <code>fieldmaps/subj_id/sess&lt;sess number&gt;/&lt;subj_id&gt;_magnitude.nii</code> and <code>&lt;subj_id&gt;_phase.nii</code>
-    - Unzip, move and rename functional runs from BIDS to <code>imaging_data_raw/subj_id/sess&lt;sess number&gt;/&lt;subj_id&gt;\_run\_&lt;run number&gt;.nii</code>
+1&#46; **Move from BIDS**
+- (Optional) Unzip, move and rename fmap phase and magnitude from <code>BIDS<</code>> to <code>fieldmaps/subj_id/sess&lt;sess number&gt;/&lt;subj_id&gt;_magnitude.nii</code> and <code>&lt;subj_id&gt;_phase.nii</code>
+- Unzip, move and rename functional runs from <code>BIDS</code> to <code>imaging_data_raw/subj_id/sess&lt;sess_number&gt;/&lt;subj_id&gt;_run_&lt;run_number&gt;.nii</code>
 
     {% highlight matlab %}template_imana('BIDS:move_unzip_raw_fmap', 'sn', subj_number) 
 template_imana('BIDS:move_unzip_raw_func', 'sn', subj_number){% endhighlight %}
 
 
+2&#46; **(Optional) Make VDM fieldmaps**
+- In some projects you may use fieldmaps to unwarp your functional images. Fieldmaps can quantify the deformations caused by inhomogeneities of the magnetic field. When the subject's head is placed inside the scanner bore, the magnetic field of the scanner will get bent. The amount of bending is different in different locations in the brain (e.g. the bending is higher in hippocampus). Using fieldmaps and unwarping we could correct some of the deformations. The Siemens FieldMap sequence (used in CFMM), produces two magnitude images (<code>magnitude1.nii</code> and <code>magnitude2.nii</code>), and a subtracted phase image (<code>phasediff.nii</code>). SPM uses the <code>phasediff.nii</code> and the shorter TE magnitude image (<code>magnitude1.nii</code>) to generate a *voxel displacement map* (VDM) for each functional run. Then in the *realign & unwarp* process, it uses these VDMs to correct the deformations.
+
+{% highlight matlab %}template_imana('FUNC:make_fmap', 'sn', subj_number){% endhighlight %}
+
+- **Why do you use unwarping to correct the deformations?** When subjects move during data acquisition, the interaction of *the magnetic distortions* and *subject's movements* introduces an unwanted variance (noise) to the BOLD signal. The *realign & unwarp* process, removes partially this unwanted variance.
+
+- **Disadvantages:** Unwarping removes some of the *true* variance from BOLD signals. If the reduction of the unwanted variance is low, unwarping will do us no good. For instance, when there is little movement in our data (<1mm <1deg), we may avoid this step. On the other hand, when focusing on particularly susceptible areas such as Frontal pole, Orbito-frontal cortext, Medial temporal lobe (especially hippocampus), unwarping can dramatically reduce the unwanted variance.
+
+- ref: [SPM guide](https://www.fil.ion.ucl.ac.uk/spm/data/fieldmap/), [UCL mfD course slides](https://www.fil.ion.ucl.ac.uk/mfd_archive/2015/page1/2015-16/RealignmentUnwarp.pptx)
+
+3&#46; **Realignment (& Unwarping)**
+
+- Run the SPM12 <code>spm_realign()</code> (or <code>spm_realign_unwarp()</code>) script for motion correction. *Realign* process runs a rigid transformation (3 x,y,z translation parameters and 3 rotation parameters; overall 6 params) for every single functional volume to a reference image. This reference image is by default the 1st volume in the first run of the session. Alternatively in SPM, you can choose to first align to the 1st volume of the first run and then align everything to the *mean volume* of all runs. 
+
+{% highlight matlab %}template_imana('FUNC:realign_unwarp', 'sn', subj_number, 
+                                      'rtm', reference_image_option){% endhighlight %}
+
+OR
+
+{% highlight matlab %}template_imana('FUNC:realign', 'sn', subj_number, ...
+                               'rtm', reference_image_option){% endhighlight %}
+
+- ***rtm*** **option:** *rtm* is short for *register to mean*. If this option is set as 0, SPM aligns all the volumes in a session to the 1st volume of the first run. If set as 1, SPM first aligns to the first volume and then aligns to *mean of all volumes of all runs*. 
+
+4&#46; **Move Realigned Images**
+- move the realigned (& unwarped) images from <code>imaging_data_raw</code> to <code>imaging_data/sess&lt;sess_number&gt;/&lt;prefix&gt;&lt;subj_id&gt;_run_&lt;run_number&gt;.nii</code>
+
+{% highlight matlab %}template_imana('FUNC:move_realigned_images', 'sn', subj_number, ...
+                                             'rtm', reference_image_option, ...
+                                             'prefix', prefix_for_functional_files){% endhighlight %}
+
+- ***'prefix'* option:** 
 
 
 ## **Freesurfer pipeline:**
