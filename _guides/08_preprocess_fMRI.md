@@ -141,10 +141,24 @@ OR
                              'rtm', reference_image_option, ...
                              'prefix', prefix_for_functional_files){% endhighlight %}
 
-- This process only estimates a transformation matrix. It does not do any reslicing or smoothing. The registration is a rigid transformation (3 x,y,z translation parameters and 3 rotation parameters; overall 6 params). 
+- This process only estimates a transformation matrix. So, no reslicing. The registration is a rigid transformation (3 x,y,z translation parameters and 3 rotation parameters; overall 6 params). 
 
 
 7&#46; **Replace the Transformation Matrix of Functional Images**
+- Replace the transformation matrix estimated in **step 6** in the functional images of each session. This step only changes the transformation matrix in the header of the .nii files. Thus, no reslicing.
+
+{% highlight matlab %}template_imana('FUNC:make_samealign', 'sn', subj_number, ...
+                                      'rtm', reference_image_option, ...
+                                      'prefix', prefix_for_functional_files){% endhighlight %}
+
+- After this step, use fsleyes (or similar apps) to visually inspect the coregistration of functional images to the anatomical image. You can simply overlay the functional run on the anatomical image and play with the color profiles, contrasts, opacity, etc. to make this process intuitive. 
+
+8&#46; **Make Mask Images**
+- For the 1st level GLM you need to create mask image of the grey matter.
+
+{% highlight matlab %}template_imana('FUNC:make_maskImage', 'sn', subj_number, ...
+                                      'rtm', reference_image_option, ...
+                                      'prefix', prefix_for_functional_files){% endhighlight %}
 
 
 
