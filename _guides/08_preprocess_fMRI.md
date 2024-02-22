@@ -39,7 +39,7 @@ If you have any questions, please contact Jason Kai at:
 ## participants.tsv 
 A <code>participants.tsv</code> file must be created for every fMRI project. This file must be stored in the main directory of the project (<code>baseDir</code> in the <code>template_imana.m</code>). It includes some general information about subjects such as *subj_id*, *sex*, *age*, etc., and some project-specific information such as *num_sessions*, *num_run*, *num_TR*, etc. Check out the example <code>participants.tsv</code> in the [spmj_tools](https://github.com/DiedrichsenLab/spmj_tools) repository. Be careful when using office softwares for editing and saving the <code>participants.tsv</code> for your own projects. Sometimes softwares such as Ubuntu's LibreOffice changes the format of the .tsv file and it cannot be loaded using the <code>dload()</code> function from [dataframe toolbox](https://github.com/DiedrichsenLab/dataframe). I personally have used MS Office and it works fine. Alternatively, create the .tsv files using Pandas in Python or <code>dsave()</code> function in [dataframe toolbox](https://github.com/DiedrichsenLab/dataframe).
 
-## **Anatomical pipeline pre-freesurfer:** 
+## Anatomical pipeline (pre-freesurfer)
 
 The code snippets are from the <code>template_imana.m</code> on [spmj_tools](https://github.com/DiedrichsenLab/spmj_tools) repository.
 
@@ -170,8 +170,9 @@ To get a good co-registration, you can alternate between manual and automatic re
                                       'rtm', reference_image_option, ...
                                       'prefix', prefix_for_functional_files){% endhighlight %}
 
-
-
-
 ## **Freesurfer pipeline:**
-In prep...
+See [Surface-based analysis for neocortex](https://diedrichsenlab.github.io/guides/06_surface_analysis.html) for details.
+
+## **SUIT pipeline:**
+
+
