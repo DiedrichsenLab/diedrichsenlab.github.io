@@ -49,6 +49,12 @@ singularity run /srv/containers/tar2bids_v0.2.4.sif -h <project-id>_heuristic.py
 
 ## Heuristic files
 
+This is an example code for a heuristic file:
+
+```
+
+```
+
 ## Gradcorrect
 
 After you have a BIDS repository with the Nifti files, run the following command:
