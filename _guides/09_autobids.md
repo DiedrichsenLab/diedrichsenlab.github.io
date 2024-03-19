@@ -23,4 +23,5 @@ DICOM to Nifti conversion involves two steps, both can be run from the terminal 
 ---
 ```
 
-Outdir is the directory where cfmm2tar puts the output data. You can use */local/scratch* as an output directory for *cfmm2tar*, but always remember to clean the directory when you are done. Those who don't clean the directory will need to make 100 push-ups at the next lab meeting. 
+Outdir is the directory where cfmm2tar puts the output data. You can use */local/scratch* as an output directory for *cfmm2tar*, but always remember to clean the directory when you are done. **Those who don't clean the directory will need to make 100 push-ups at the next lab meeting**. 
+
