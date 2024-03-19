@@ -45,7 +45,7 @@ After you have created the .tar and .uid file with *cfmm2tar*, the second step i
 singularity run /srv/containers/tar2bids_v0.2.4.sif -h <project-id>_heuristic.py <filename>.tar
 ```
 
-<filename> is the name of the .tar file created by *cfmm2tar* in the previous step.
+`<filename>` is the name of the .tar file created by *cfmm2tar* in the previous step.
 
 
 
