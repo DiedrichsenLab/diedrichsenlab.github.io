@@ -37,7 +37,7 @@ singularity run /srv/containers/cfmm2tar_v1.0.0.sif -n <Patient's Name> <out_dir
 
 *cfmm2tar* will create a .tar and a .uid file int he output directory.
 
-## Second step: tar2bids
+## Second step: *tar2bids*
 
 After you have created the .tar and .uid file with *cfmm2tar*, the second step involves creating the BIDS repository with the .nii file. Type the following command in the Terminal:
 
