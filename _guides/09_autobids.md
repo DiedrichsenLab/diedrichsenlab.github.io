@@ -45,7 +45,7 @@ After you have created the .tar and .uid file with *cfmm2tar*, the second step i
 singularity run /srv/containers/tar2bids_v0.2.4.sif -h <project-id>_heuristic.py -o <out_dir> <filename>.tar
 ```
 
-`<filename>` is the name of the .tar file created by *cfmm2tar* in the previous step. `<out_dir>` is the directory where tar2bids puts the Nifti files. One possibility is to set /local/scratch/BIDS as `<out_dir>`. `<project-id>_heuristic.py` is a Python script with the information needed to convert functional runs from DICOM to Nifti. If your project is new and you don't have a heuristic file yet, see the next paragraph to learn how to create one. 
+`<filename>` is the name of the .tar file created by *cfmm2tar* in the previous step. `<out_dir>` is the directory where tar2bids puts the Nifti files. One possibility is to set */local/scratch/BIDS* as `<out_dir>`. `<project-id>_heuristic.py` is a Python script with the information needed to convert functional runs from DICOM to Nifti. If your project is new and you don't have a heuristic file yet, see the next paragraph to learn how to create one. 
 
 ## Heuristic files
 
@@ -57,10 +57,9 @@ After you have a BIDS repository with the Nifti files, run the following command
 singularity run /srv/containers/khanlab_gradcorrect_v0.0.3a.sif <bids_dir> <out_dir> participant --grad_coeff_file /srv/software/gradcorrect/coeff_AC84.grad
 ```
 
+`<bids_dir>` must correspond to `<out_dir>` input to *tar2bids*. As `<out_dir>` in *gradcorrect* you can put */local/scratch/BIDS_gradcorrect*. Inside `<out_dir>` *gradcorrect* puts several files and folder, including a sub-XX folder with three folders inside: anat, func and fmaps. `<template_imana.m>` from `<spmj>` needs these three folders to be into */project_directory/BIDS/sub-XX/*. 
 
-
-
-Inside `<out_dir>` tar2bids puts several files and folder, including a sub-XX folder with three folders: anat, func and fmaps. 
+That's all folks!
 
 
 
