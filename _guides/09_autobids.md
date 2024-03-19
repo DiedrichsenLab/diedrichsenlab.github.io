@@ -5,7 +5,7 @@ title: DICOM to Nifti conversion using autobids routines
 
 ## The CFMM DICOM Server
 
-MRI datasets acquired at CFMM are stored in the [CFMM DICOM Server](https://dicom.cfmm.uwo.ca/dcm4chee-arc/ui2/study/study). To access the data of a specific project, tipe PRINCIPAL^PROJECT-ID (e.g., DIEDRICHSEN^SMP) in the "Study Description" field, then click Submit. You will see the list of datasets (i.e., participants, sessions...) collected for your study. Each dataset is identified by a Patient's Name with a standard format YYYY_MM_DD_PROJECT-ID_SUBJ-ID (e.g., 2024_03_13_SMP1_100). In each dataset, MRI data are stored in the DICOM format (.dcm). **You don't need to download the datasets from the CFMM DICOM Server to perform the conversion to Nifti (.nii).
+MRI datasets acquired at CFMM are stored in the [CFMM DICOM Server](https://dicom.cfmm.uwo.ca/dcm4chee-arc/ui2/study/study). To access the data of a specific project, tipe PRINCIPAL^PROJECT-ID (e.g., DIEDRICHSEN^SMP) in the "Study Description" search field, then click Submit. You will see the list of datasets (i.e., participants, sessions...) collected for your study. Each dataset is identified by a Patient's Name with a standard format YYYY_MM_DD_PROJECT-ID_SUBJ-ID (e.g., 2024_03_13_SMP1_100). In each dataset, MRI data are stored in the DICOM format (.dcm). **You don't need to download the datasets from the CFMM DICOM Server to perform the conversion to Nifti (.nii).
 
 ## First step: *cfmm2tar*
 
@@ -29,7 +29,7 @@ You can add flags to *cfmm2tar* to perform this step on a specific project or da
 singularity run /srv/containers/cfmm2tar_v1.0.0.sif -p <PRINCIPAL^PROJECT-ID> <out_dir>
 ```
 
-With the flag -n <Patient's Name> you can input a specific dataset by using the Patient's Name field in the CFMM DICOM Server:
+With the flag -n <Patient's Name> you can input a specific dataset by using the "Patient's Name" field in the CFMM DICOM Server:
 
 ```
 singularity run /srv/containers/cfmm2tar_v1.0.0.sif -n <Patient's Name> <out_dir>
