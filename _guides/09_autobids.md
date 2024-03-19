@@ -45,8 +45,11 @@ After you have created the .tar and .uid file with *cfmm2tar*, the second step i
 singularity run /srv/containers/tar2bids_v0.2.4.sif -h <project-id>_heuristic.py <filename>.tar
 ```
 
-`<filename>` is the name of the .tar file created by *cfmm2tar* in the previous step.
+`<filename>` is the name of the .tar file created by *cfmm2tar* in the previous step. `<project-id>_heuristic.py` is a Python script with the information needed to convert functional runs from DICOM to Nifti. If your project is new and don't have yet a heuristic file, see the next paragraph to learn how to create one. 
 
+## Heuristic files
+
+## Gradcorrect
 
 
 
