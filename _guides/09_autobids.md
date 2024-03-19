@@ -23,13 +23,13 @@ singularity run /srv/containers/cfmm2tar_v1.0.0.sif <out_dir>
 
 `<out_dir>` is the directory where *cfmm2tar* puts the output data. You can use */local/scratch* as an output directory for *cfmm2tar*, but always remember to clean the directory when you are done.
 
-You can add flags to *cfmm2tar* to perform this step on a specific project or dataset. With the flag -p <PRINCIPAL^PROJECT-ID> you can input to *cfmm2tar* all the datasets beloning to a specific project:
+You can add flags to *cfmm2tar* to perform this step on a specific project or dataset. With the flag `-p <PRINCIPAL^PROJECT-ID>` you can input to *cfmm2tar* all the datasets beloning to a specific project:
 
 ```
 singularity run /srv/containers/cfmm2tar_v1.0.0.sif -p <PRINCIPAL^PROJECT-ID> <out_dir>
 ```
 
-With the flag -n <Patient's Name> you can input a specific dataset by using the "Patient's Name" field in the CFMM DICOM Server:
+With the flag `-n <PARTICIPANT-ID>` you can input a specific dataset by using the "Patient's Name" field in the CFMM DICOM Server:
 
 ```
 singularity run /srv/containers/cfmm2tar_v1.0.0.sif -n <Patient's Name> <out_dir>
@@ -102,6 +102,14 @@ def infotodict(seqinfo):
     return info
 
 ```
+
+The variable `s` points to a spreadsheet that you can find in */local/scratch/BIDS/code/tar2bids_YYYY-MM-DD_XXhXXm_ZZZZ/heudiconv/PARTICIPANT-ID/info/dicominfo.tsv*. To create the heuristic file for your project, you need to edit the example above by using the information contained in the spreadsheet. The spreadsheet contains a row for each .dcm file included in the dataset. Each column contains information about .dcm files some. For example, in the case of the project to which the above heuristics belong, the column "series_description" contains the substring "1.8iso_AP" in functional runs, in which the column "dim4" contains a number >200 (which corresponds to the number of volumes collected in each functional run). You can create the spreadsheet by running tar2bids without the -h flag on the first dataset you collect:
+
+```
+singularity run /srv/containers/tar2bids_v0.2.4.sif -o <out_dir> <filename>.tar
+```
+
+This will create the *dicominfo.tsv* spreadsheet inside `<out_dir>` in the path specified above.
 
 ## Gradcorrect
 
