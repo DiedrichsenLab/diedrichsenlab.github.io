@@ -21,7 +21,7 @@ DICOM to Nifti conversion involves two steps (*cfmm2tar* and *tar2bids*). Both c
 singularity run /srv/containers/cfmm2tar_v1.0.0.sif <out_dir>
 ```
 
-`<out_dir>` is the directory where *cfmm2tar* puts the output data. You can use */local/scratch* as an output directory for *cfmm2tar*, but always remember to clean the directory when you are done. **Those who don't clean the directory will have to make 100 push-ups at the next lab meeting**.
+`<out_dir>` is the directory where *cfmm2tar* puts the output data. You can use */local/scratch* as an output directory for *cfmm2tar*, but always remember to clean the directory when you are done.
 
 You can add flags to *cfmm2tar* to perform this step on a specific project or dataset. With the flag -p <PRINCIPAL^PROJECT-ID> you can input to *cfmm2tar* all the datasets beloning to a specific project:
 
