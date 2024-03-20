@@ -112,7 +112,7 @@ After you have a BIDS repository with the Nifti files, run the following command
 singularity run /srv/containers/khanlab_gradcorrect_v0.0.3a.sif <bids_dir> <out_dir> participant --grad_coeff_file /srv/software/gradcorrect/coeff_AC84.grad
 ```
 
-`<bids_dir>` must correspond to `<out_dir>` input to *tar2bids*. The `participant` argument must be passed as it is, it is NOT the participant-id. As `<out_dir>` in *gradcorrect* you can put */local/scratch/BIDS_gradcorrect*. Inside `<out_dir>` *gradcorrect* puts several files and folder, including a sub-XX folder with three folders inside: anat, func and fmaps. `<template_imana.m>` from `<spmj>` needs these three folders to be into */project_directory/BIDS/sub-XX/*. 
+`<bids_dir>` must correspond to `<out_dir>` input to *tar2bids*. The `participant` argument must be passed as it is, it is NOT the PARTICIPANT-ID. As `<out_dir>` in *gradcorrect* you can put */local/scratch/BIDS_gradcorrect*. Inside `<out_dir>` *gradcorrect* puts several files and folder, including a sub-XX folder with three folders inside: anat, func and fmaps. These three folders contains the Nifti files output by gradcorrect. `<template_imana.m>` from `<spmj>` needs these three folders to be into */project_directory/BIDS/sub-XX/*. 
 
 That's all folks!
 
