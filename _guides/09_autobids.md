@@ -106,7 +106,7 @@ singularity run /srv/containers/tar2bids_v0.2.4.sif -o <out_dir> <filename>.tar
 
 This will create the *dicominfo.tsv* spreadsheet inside `<out_dir>` in the path specified above.
 
-## Gradcorrect (highly recommended for 7T scans)
+# Gradcorrect (highly recommended for 7T scans)
 
 After you have a BIDS repository with the Nifti files, run the following command:
 
@@ -117,7 +117,7 @@ singularity run /srv/containers/khanlab_gradcorrect_v0.0.3a.sif <bids_dir> <out_
 `<bids_dir>` must correspond to `<out_dir>` input to *tar2bids*. The `participant` argument must be passed as it is, it is NOT the PARTICIPANT-ID. As `<out_dir>` in *gradcorrect* you can put */local/scratch/BIDS_gradcorrect*. Inside `<out_dir>` *gradcorrect* puts several files and folder, including a sub-XX folder with three folders inside: anat, func and fmaps. These three folders contains the Nifti files output by gradcorrect. `<template_imana.m>` from `<spmj>` needs these three folders to be into */project_directory/BIDS/sub-XX/*. 
 
 
-## Method 2: automatic conversiont through autobids (Currently unavailable)
+## Method 2: automatic conversion through autobids (Currently unavailable)
 Autobids is a pipeline maintained by the Khan lab that transforms the raw imaging data from DICOM (Properiatary Siemens format) to nifti files, renames them in BIDS standard, and applies gradient nonlinearity correction to the images as appropriate (gradcorrect).
 
 [Gradcorrect](https://github.com/khanlab/gradcorrect) which calls [gradunwarp](https://github.com/kaitj/gradunwarp), adapted from the workflow used in HCP data correction. 
