@@ -9,33 +9,6 @@ usemathjax: true
 * [Matlab DataFrame toolbox](https://github.com/DiedrichsenLab/dataframe)
 * SPM12
 
-
-## Autobids
-Autobids is a pipeline maintained by the Khan lab that transforms the raw imaging data from DICOM (Properiatary Siemens format) to nifti files, renames them in BIDS standard, and applies gradient nonlinearity correction to the images as appropriate (gradcorrect).
-
-[Gradcorrect](https://github.com/khanlab/gradcorrect) which calls [gradunwarp](https://github.com/kaitj/gradunwarp), adapted from the workflow used in HCP data correction. 
-
-### Steps for getting your data into BIDS format:
-
-1. **Study Registration**: 
-    - Register your study through the [autobids new study form](https://autobids-uwo.ca/new).
-2. **Autobids Autherization**: 
-    - Have your PI add 'bidsdump' to the list of users who can access the study's data on the [CFMM dicom server](https://dicom.cfmm.uwo.ca/)
-3. **Globus Setup**: 
-    - Sign up for a [Globus account](http://app.globus.org/). You can use your UWO credentials to sign up.
-    - Install the [Globus Connect Personal](https://www.globus.org/globus-connect-personal) on your computer.
-4. **Data Downlaod**: 
-    - Once your study is registered with autobids and you collect new data, your study specific pipeline will be applied and the data will be available on Globus for you to download.
-    - Login to globus and navigate to the "COLLECTIONS" tab. You should see your BIDS converted data shared with you.
-    - "autobids_study_{name}_type_{type}" is the folder that contains the BIDS converted data.
-    - Collection type is provided in both "rawdata" (DICOM to Nii converted and renamed to BIDS format) or "derivedata" (DICOM to Nii converted, renamed to BIDS format and gradcorrect applied).
-
-### Questions?
-For more information about autobids, please visit the [OSF autobids guide](https://osf.io/k89fh/wiki/autobids/).
-
-If you have any questions, please contact Jason Kai at:
-- Email: tkai@uwo.ca
-
 ## participants.tsv 
 A <code>participants.tsv</code> file must be created for every fMRI project. This file must be stored in the main directory of the project (<code>baseDir</code> in the <code>template_imana.m</code>). It includes some general information about subjects such as *subj_id*, *sex*, *age*, etc., and some project-specific information such as *num_sessions*, *num_run*, *num_TR*, etc. Check out the example <code>participants.tsv</code> in the [spmj_tools](https://github.com/DiedrichsenLab/spmj_tools) repository. Be careful when using office softwares for editing and saving the <code>participants.tsv</code> for your own projects. Sometimes softwares such as Ubuntu's LibreOffice changes the format of the .tsv file and it cannot be loaded using the <code>dload()</code> function from [dataframe toolbox](https://github.com/DiedrichsenLab/dataframe). I personally have used MS Office and it works fine. Alternatively, create the .tsv files using Pandas in Python or <code>dsave()</code> function in [dataframe toolbox](https://github.com/DiedrichsenLab/dataframe).
 

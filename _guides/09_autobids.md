@@ -3,11 +3,13 @@ layout: page
 title: DICOM to Nifti conversion using autobids routines
 ---
 
-## The CFMM DICOM Server
+## Method 1: Manual conversion 
+
+# The CFMM DICOM Server
 
 MRI datasets acquired at CFMM are stored in the [CFMM DICOM Server](https://dicom.cfmm.uwo.ca/dcm4chee-arc/ui2/study/study). To access the data of a specific project, tipe PRINCIPAL^PROJECT-ID (e.g., DIEDRICHSEN^SMP) in the "Study Description" search field, then click Submit. You will see the list of datasets (i.e., participants, sessions...) collected for your study. Each dataset is identified by a Patient's Name with a standard format YYYY_MM_DD_PROJECT-ID_SUBJ-ID (e.g., 2024_03_13_SMP1_100). In each dataset, MRI data are stored in the DICOM format (.dcm). **You don't need to download the datasets from the CFMM DICOM Server to perform the conversion to Nifti (.nii).
 
-## First step: *cfmm2tar*
+# First step: *cfmm2tar*
 
 DICOM to Nifti conversion involves two steps (*cfmm2tar* and *tar2bids*). Both can be run from the terminal of the CBS server. 
 
@@ -37,7 +39,7 @@ singularity run /srv/containers/cfmm2tar_v1.0.0.sif -n <Patient's Name> <out_dir
 
 *cfmm2tar* will create a .tar and a .uid file in the output directory.
 
-## Second step: *tar2bids*
+# Second step: *tar2bids*
 
 After you have created the .tar and .uid file with *cfmm2tar*, the second step involves creating the BIDS repository with the .nii file. Run the following command in the Terminal:
 
@@ -47,7 +49,7 @@ singularity run /srv/containers/tar2bids_v0.2.4.sif -h <project-id>_heuristic.py
 
 `<filename>` is the name of the .tar file created by *cfmm2tar* in the previous step. `<out_dir>` is the directory where tar2bids puts the Nifti files. One possibility is to set */local/scratch/BIDS* as `<out_dir>`. `<project-id>_heuristic.py` is a Python script with the information needed to convert functional runs from DICOM to Nifti. If your project is new and you don't have a heuristic file yet, see the next paragraph to learn how to create one. 
 
-## Heuristic files
+# Heuristic files
 
 This is an example code for a heuristic file:
 
@@ -104,7 +106,7 @@ singularity run /srv/containers/tar2bids_v0.2.4.sif -o <out_dir> <filename>.tar
 
 This will create the *dicominfo.tsv* spreadsheet inside `<out_dir>` in the path specified above.
 
-## Gradcorrect
+## Gradcorrect (highly recommended for 7T scans)
 
 After you have a BIDS repository with the Nifti files, run the following command:
 
@@ -114,8 +116,23 @@ singularity run /srv/containers/khanlab_gradcorrect_v0.0.3a.sif <bids_dir> <out_
 
 `<bids_dir>` must correspond to `<out_dir>` input to *tar2bids*. The `participant` argument must be passed as it is, it is NOT the PARTICIPANT-ID. As `<out_dir>` in *gradcorrect* you can put */local/scratch/BIDS_gradcorrect*. Inside `<out_dir>` *gradcorrect* puts several files and folder, including a sub-XX folder with three folders inside: anat, func and fmaps. These three folders contains the Nifti files output by gradcorrect. `<template_imana.m>` from `<spmj>` needs these three folders to be into */project_directory/BIDS/sub-XX/*. 
 
-That's all folks!
 
+## Method 2: automatic conversiont through autobids (Currently unavailable)
+Autobids is a pipeline maintained by the Khan lab that transforms the raw imaging data from DICOM (Properiatary Siemens format) to nifti files, renames them in BIDS standard, and applies gradient nonlinearity correction to the images as appropriate (gradcorrect).
 
+[Gradcorrect](https://github.com/khanlab/gradcorrect) which calls [gradunwarp](https://github.com/kaitj/gradunwarp), adapted from the workflow used in HCP data correction. 
 
+### Steps for getting your data into BIDS format:
 
+1. **Study Registration**: 
+    - Register your study through the [autobids new study form](https://autobids-uwo.ca/new).
+2. **Autobids Autherization**: 
+    - Have your PI add 'bidsdump' to the list of users who can access the study's data on the [CFMM dicom server](https://dicom.cfmm.uwo.ca/)
+3. **Globus Setup**: 
+    - Sign up for a [Globus account](http://app.globus.org/). You can use your UWO credentials to sign up.
+    - Install the [Globus Connect Personal](https://www.globus.org/globus-connect-personal) on your computer.
+4. **Data Downlaod**: 
+    - Once your study is registered with autobids and you collect new data, your study specific pipeline will be applied and the data will be available on Globus for you to download.
+    - Login to globus and navigate to the "COLLECTIONS" tab. You should see your BIDS converted data shared with you.
+    - "autobids_study_{name}_type_{type}" is the folder that contains the BIDS converted data.
+    - Collection type is provided in both "rawdata" (DICOM to Nii converted and renamed to BIDS format) or "derivedata" (DICOM to Nii converted, renamed to BIDS format and gradcorrect applied).
