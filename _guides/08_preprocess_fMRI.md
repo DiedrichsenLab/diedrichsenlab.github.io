@@ -20,24 +20,24 @@ The code snippets are from the <code>template_imana.m</code> on [spmj_tools](htt
 - Unzip, move and rename T1 anatomical from <code>BIDS</code> to <code>anatomicals/subj_id/&lt;subj_id&gt;_anatomical.nii</code>.
     {% highlight matlab %}template_imana('BIDS:move_unzip_raw_anat', 'sn', subj_number){% endhighlight %}
 
-1. **Reslice LPI**
+2. **Reslice LPI**
 - Reslice anatomical image within LPI coordinate systems. LPI stands for Left, Posterior, Inferior which means coordinates increase when you go from *Left to Right*, *Posterior to Anterior*, and *Inferior to Superior* in the anatomical image.
     {% highlight matlab %}template_imana('ANAT:reslice_LPI', 'sn', subj_number){% endhighlight %}
-1. **Center AC**
+3. **Center AC**
 - Set AC (*Anterior Commissure*) in T1 anatomicals as [0,0,0] in the anatomical image coordinates. [Here](https://imaging.mrc-cbu.cam.ac.uk/imaging/FindingCommissures) is a nice guide to locate AC in the anatomical image. 
-    2. Open the Anatomical image in fsleyes (or similar apps) 
-    2. Find the Anterior Commissure by moving around the slices
-    2. Put the center of the red cursor (in fsleyes) on AC
-    2. Read the slice indices in voxel coordinates (X,Y,Z)
-    2. Insert the X,Y,Z indices (in voxel coordinates) in the <code>participants.tsv</code>. The default <code>participants.tsv</code> (found on [spmj_tools](https://github.com/DiedrichsenLab/spmj_tools)) has three columns named locACx, locACy, and locACz where you should insert the values.
+    1. Open the Anatomical image in fsleyes (or similar apps) 
+    1. Find the Anterior Commissure by moving around the slices
+    1. Put the center of the red cursor (in fsleyes) on AC
+    1. Read the slice indices in voxel coordinates (X,Y,Z)
+    1. Insert the X,Y,Z indices (in voxel coordinates) in the <code>participants.tsv</code>. The default <code>participants.tsv</code> (found on [spmj_tools](https://github.com/DiedrichsenLab/spmj_tools)) has three columns named locACx, locACy, and locACz where you should insert the values.
     {% highlight matlab %}template_imana('ANAT:centre_AC', 'sn', subj_number){% endhighlight %}
 
-1.**Segmentation and Normalization**
+4. **Segmentation and Normalization**
 - Run the SPM12 batch script for segmentation and normalization. 
     {% highlight matlab %}template_imana('ANAT:segmentation', 'sn', subj_number){% endhighlight %}
 - **Results in** 5 .nii files starting with c1, c2, ..., c5. These are masks separating the anatomical image into 5 different segments such as *grey matter*, *white matter*, *skull*, etc. 
 
-1. **T2 (optional)**
+5. **T2 (optional)**
 - Unzip, move and rename T2 anatomical from <code>BIDS</code> to <code>anatomicals/subj_id/&lt;subj_id&gt;_T2anatomical.nii</code><br>
 - Coregister T2 to T1
 
