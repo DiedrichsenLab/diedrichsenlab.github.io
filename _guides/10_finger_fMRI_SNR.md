@@ -38,12 +38,12 @@ where $$U$$ is the true activity pattern matrix and $epsilon_i$ is the measurmen
 
 * Within run variance as:
 $$
-\mathbb[y_i {y_i}^T] = \mathbb[U U^T] + \mathbb[\epsilon_i {\epsilon_i}^T] = UU^T + \Sigma
+\mathbb{E}[y_i {y_i}^T] = \mathbb{E}[U U^T] + \mathbb{E}[\epsilon_i {\epsilon_i}^T] = UU^T + \Sigma
 
 * Across runs co-variance as:
 $$
-\mathbb[y_i {y_j}^T] = UU^T (i \neq j)
+\mathbb{E}[y_i {y_j}^T] = UU^T (i \neq j)
 $$
 
-Replace the $$\mathbb[]$$ with mean over all possible pairings.
+Replace the $$\mathbb{E}[]$$ with mean over all possible pairings.
 
