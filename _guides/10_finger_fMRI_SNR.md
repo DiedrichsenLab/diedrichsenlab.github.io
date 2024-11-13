@@ -17,6 +17,33 @@ When designing a new fMRI experiment, we need to select parameters such as the n
 
 ## The design parameters:
 
+* #Conditions per Run & #Repetition per Condition: For some designs, we want to fit as many task conditions as we can. But since a run can't take too long, more conditions means fewer number of trials per condition. For example, Ejaz 2015 with 31 conditions did 1 trial per condition. Diedrichsen 2012 had 10 conditions and could fit 3 trials. Now, compare the achieved SNR values between the two. 
+
+* Trial Length:
+
+* Resolution:
+
+* Field: 
 
 
 ## How to estimate SNR ($$ V_s / V_{se}$$)?
+
+Variance decomposition was used to esimate the signal qualities. For each subject, we get an $$N \times P$$ matrix after glm. N-regressors by P-voxels activity patterns. Let each run be denoted by $$y_i$$, where i is the run index. Each $$y_i$$ can then be modeled as:
+
+$$
+y_i = U + \epsilon_i
+$$
+
+where $$U$$ is the true activity pattern matrix and $epsilon_i$ is the measurment noise. If we assume that: 1) $$epsilon_i$$ is i.i.d., and 2) $$U$$ and $$epsilon_i$$ are statistically independent, we can estimate:
+
+* Within run variance as:
+$$
+\mathbb[y_i {y_i}^T] = \mathbb[U U^T] + \mathbb[\epsilon_i {\epsilon_i}^T] = UU^T + \Sigma
+
+* Across runs co-variance as:
+$$
+\mathbb[y_i {y_j}^T] = UU^T (i \neq j)
+$$
+
+Replace the $$\mathbb[]$$ with mean over all possible pairings.
+
