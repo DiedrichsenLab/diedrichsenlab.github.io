@@ -39,6 +39,7 @@ where $$U$$ is the true activity pattern matrix and $epsilon_i$ is the measurmen
 * Within run variance as:
 $$
 \mathbb{E}[y_i {y_i}^T] = \mathbb{E}[U U^T] + \mathbb{E}[\epsilon_i {\epsilon_i}^T] = UU^T + \Sigma
+$$
 
 * Across runs co-variance as:
 $$
