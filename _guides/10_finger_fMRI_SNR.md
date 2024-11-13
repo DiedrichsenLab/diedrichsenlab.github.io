@@ -34,7 +34,7 @@ $$
 y_i = U + \epsilon_i
 $$
 
-where $$U$$ is the true activity pattern matrix and $epsilon_i$ is the measurment noise. If we assume that: 1) $$\epsilon_i$$ is i.i.d., and 2) $$U$$ and $$\epsilon_i$$ are statistically independent, we can estimate:
+where $$U$$ is the true activity pattern matrix and $\epsilon_i$ is the measurment noise. If we assume that: 1) $$\epsilon_i$$ is i.i.d., and 2) $$U$$ and $$\epsilon_i$$ are statistically independent, we can estimate:
 
 * Within run variance as:
 $$
