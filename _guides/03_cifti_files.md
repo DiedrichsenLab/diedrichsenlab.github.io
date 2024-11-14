@@ -20,7 +20,7 @@ There are 5 different kinds of axis:
 The two different axes define a set of different type of CIFTI files - each with a different extension. The column axis usually is a BrainModel or Parcels axis - this is the space that is being displayed. The rows is the type of data that is displayed in that space.
 
 
-| File extension | Description | Rwo Axis[0] | Column Axis[1] |
+| File extension | Description | Row Axis[0] | Column Axis[1] |
 |----------------|-------------|---------|---------|
 | .dscalar.nii   | Dense scalar data | Scalar | BrainModel |
 | .pscalar.nii   | Parcel scalar data | Scalar | Parcel |
@@ -42,7 +42,7 @@ There is no reason that you cannot have other combination of axes, but connectom
 
 ## Displaying CIFTI files in workbench
 
-When you load a cifti-file into connectome workbench, you can display it automatically. For example you may have extracted ROI mean activation data and stored it in a pscalae file. You can load this file into workbench and display it on the surface and / or volume (depending whether the parcels you defined contain vertices or voxels).
+When you load a cifti-file into connectome workbench, you can display it automatically. For example you may have extracted ROI mean activation data for different conditions and stored it in a pscalar file. You can load this file into workbench and display it on the surface and / or volume. It will color the ROI correctly with the value assigned, using the information of the vertices or voxels that it contains.
 
 dconn and pconn files in workbench are assumed to be connectivity values between the same structure with itself (i.e. intracortical connectivity - so the connectivity matrix needs to be square).
 
