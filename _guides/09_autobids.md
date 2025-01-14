@@ -3,7 +3,7 @@ layout: page
 title: DICOM to Nifti conversion using autobids routines
 ---
 
-## Method 1: Manual conversion 
+## Method 1: Manual conversion of data
 
 # The CFMM DICOM Server
 
