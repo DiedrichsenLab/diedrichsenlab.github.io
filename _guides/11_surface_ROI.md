@@ -14,7 +14,7 @@ To load a surface file:
 1. Click File > Open File...
 2. Nevigate to the directory where the templates are stored (for example: /cifs/diedrichsen/data/Atlas_templates/fs_LR_32)
 3. Choose a surface file, and click open (for example: fs_LR_32k.L.flat.surf.gii)
-4. Use the save method to load a layer file (: for example: fs_LR_32k.LR.sulcus.dscalar.nii )
+4. Use the same method to load a layer file (for example: fs_LR_32k.LR.sulcus.dscalar.nii )
 
 # 3. Draw a new ROI
 In the top bar:
@@ -31,7 +31,7 @@ In the top bar:
 # 4. Save the border file
 To save the new border file:
 1. In the top bar, within the "Border Operation section", click "Finish"
-2. Name the new border file (for example: newROIs.border), and add a name to the specific ROI you just created (for example: myROI.border)
+2. Name the new border file (for example: newROIs.border), and add a name to the specific ROI you have just created (for example: myROI.border)
 3. Save the border file by clicking "File > Save/Manage Files…", and then checking the new border file in the Manage Data Files window.
 
 <img src="./surf_roi_3.png" alt="Save a new border file" width="400"/>
@@ -45,7 +45,7 @@ To make a ROI from the boarder file:
 wb_command -border-to-rois <surface> <border-file> <metric-out>
 ```
 
-'<surface>' is the full path to the surface the borders are drawn on; '<border-file>' is the  full path to the border file you want to convert; '<metric-out>' is the full path to the output ROI file. 
+`<surface>` is the full path to the surface the borders are drawn on; `<border-file>` is the  full path to the border file you want to convert; `<metric-out>` is the full path to the output ROI file. 
 
 Usage example:
 
