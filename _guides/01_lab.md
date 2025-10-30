@@ -23,14 +23,9 @@ title: Navigating Lab Meetings
 ## Frequency and Duration
 
 ### Frequency
-- Lab meetings are held *weekly* at the same day and time (TBD)
+- Lab meetings are held *weekly* at the same day and time (Monday 10:30)
 - Lab meetings are held in-person in room 4105 at the Western Interdisciplinary Research Building unless specified otherwise.
-- *Note*: No lab meetings are held on holidays
 
-### Time Limit
-- Lab meetings should take no longer than *one hour*.
-
----
 
 ## Lab Meeting Formats
 
@@ -41,9 +36,8 @@ title: Navigating Lab Meetings
 
 - If you are presenting, make sure to have your setup fully ready before the start of the lab meeting. This includes setting up hybrid presentations if needed.
 
-
 ### Tutorials/workshops
-- List of potential tutorials TBD
+- We often give tutorials of specific topics. These should be relevant to at least a number of lab members. Even if they are not immediately relevant to your work, they are a great way to learn something new. If you think there is a specific topic we should have a tutorial on, please don't hesitate to suggest the topic. We will then find somebody who can run the tutorial. 
 
 ### Journal clubs
 - A team member selects a scientific article for a group discussion. The presenter summarizes the article's objectives, mthods and results followed by a group discussion.
