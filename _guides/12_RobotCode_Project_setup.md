@@ -43,7 +43,7 @@ Then open project properties and change the following configurations:
 4. **Project -> Properties -> Configuration Properties -> Linker -> System -> SubSystem:**  
    Change to “Windows(/SUBSYSTEM:WINDOWS)” (because this is a Windows application, not a console application).
 
-<img src="./solution_platform_x86.png" alt="Visual Studio Toolbar: Change solution platform from x64 to x86" width="400"/>
+<img src="./robotcode_solution_platform_x86.png" alt="Visual Studio Toolbar: Change solution platform from x64 to x86" width="400"/>
 
 ---
 
@@ -68,7 +68,7 @@ By right-clicking on your project name in the “solution explorer” and select
 
 **Note:** If you don’t add any of the project dependencies, you will face errors saying “unresolved external symbol”. Here is an example of how the errors might look like:
 
-<img src="./unresolved_external_symbol_error.png" alt="Error List: Unresolved external symbol example" width="400"/>
+<img src="./robotcode_unresolved_external_symbol_error.png" alt="Error List: Unresolved external symbol example" width="400"/>
 
 ---
 
@@ -101,3 +101,36 @@ string TASKSOUNDS = {
 
 **In the WinMain which is your main program:**
 
+{% highlight cpp %}
+gExp = new MyExperiment("eir2", "eir2", "C:/data/ExtrinsicIntrinsicRepetition/eir2/");
+
+// initialize s626cards
+s626.init("c:/robotcode/calib/s626_single.txt");
+{% endhighlight %}
+
+---
+
+### Step 8 – Change the experiment setting if needed
+
+**In the WinMain which is your main program:**
+
+{% highlight cpp %}
+gScreen.init(gThisInst, 1920, 0, 1920, 1080, &(::updateGraphics));
+{% endhighlight %}
+
+
+The first two numbers are the relative position of the second monitor in pixels and the second two are the resolution in pixels.
+
+---
+
+### Step 9 – Don’t forget the target files
+
+Add the experiment target folder (including `.tgt` files) to the main folder of your project where your main `.cpp` and `.h` files are (e.g. `C:\robotcode\projects\ExtFlxChord\ExtFlxChord`).
+
+---
+
+### Extra Notes
+
+Your code should compile and build if you do all the steps carefully! If it still doesn’t, you might be using some source and include files or a template project that were not ported by “Ali Ghavampour” because he didn’t need them for his projects. You might need to fix them. 
+
+If that was the case, take a look at the “Codes ChangeLog” document and please add your final changes to the log file for future reference. I guess the last resort would be to contact me? Here is my personal email address: alighavam79@gmail.com
