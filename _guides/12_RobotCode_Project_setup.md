@@ -18,7 +18,7 @@ The old codes were written in 32-bit format on MS Visual C++ 6 on Windows XP PCs
 
 Create a new empty project in MS VC++ 2022.
 
-<img src="./robotcode_createnew.png" alt="Visual Studio: Create a new project" width="400"/>
+<img src="./robotcode_createnew.png" alt="Visual Studio: Create a new project" width="100%"/>
 
 The location of the project must be: `C:\robotcode\projects\`
 
@@ -43,7 +43,7 @@ Then open project properties and change the following configurations:
 4. **Project -> Properties -> Configuration Properties -> Linker -> System -> SubSystem:**  
    Change to “Windows(/SUBSYSTEM:WINDOWS)” (because this is a Windows application, not a console application).
 
-<img src="./robotcode_solution_platform_x86.png" alt="Visual Studio Toolbar: Change solution platform from x64 to x86" width="400"/>
+<img src="./robotcode_solution_platform_x86.png" alt="Visual Studio Toolbar: Change solution platform from x64 to x86" width="100%"/>
 
 ---
 
@@ -68,7 +68,7 @@ By right-clicking on your project name in the “solution explorer” and select
 
 **Note:** If you don’t add any of the project dependencies, you will face errors saying “unresolved external symbol”. Here is an example of how the errors might look like:
 
-<img src="./robotcode_unresolved_external_symbol_error.png" alt="Error List: Unresolved external symbol example" width="400"/>
+<img src="./robotcode_unresolved_external_symbol_error.png" alt="Error List: Unresolved external symbol example" width="100%"/>
 
 ---
 
