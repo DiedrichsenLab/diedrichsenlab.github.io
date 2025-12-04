@@ -392,8 +392,6 @@ Add the experiment target folder (including `.tgt` files) to the main folder of 
 
 Your code should compile and build if you do all the steps carefully! If it still doesn't work, you might be using some source and include files or a template project that were not ported by Ali Ghavampour because he didn't need them for his projects. You might need to fix them.
 
-If that was the case, take a look at the "Codes ChangeLog" document and please add your final changes to the log file for future reference.
-
 <div class="contact-card">
   <p>Questions or issues? Reach out!</p>
   <p>📧 <a href="mailto:alighavam79@gmail.com">alighavam79@gmail.com</a></p>
