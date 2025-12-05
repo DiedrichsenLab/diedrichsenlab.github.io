@@ -550,8 +550,7 @@ label[for="nav-trigger"] {
   gap: $spacing-unit;
 }
 
-    position: relative;
-    z-index: 1250; // keep toggle above overlay
+.hero__eyebrow {
   letter-spacing: 0.12em;
   font-size: 0.75rem;
   font-weight: 700;
