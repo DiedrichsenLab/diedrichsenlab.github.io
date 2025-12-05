@@ -1,0 +1,35 @@
+<section class="hero" id="top">
+  <div class="wrapper hero__grid">
+    <div class="hero__copy">
+      <p class="eyebrow">Diedrichsen Lab Wiki</p>
+      <h1 class="hero__title">{{ include.title | default: page.title | escape }}</h1>
+      {% if include.subtitle or page.hero_subtitle %}
+        <p class="hero__subtitle">{{ include.subtitle | default: page.hero_subtitle }}</p>
+      {% endif %}
+      <div class="hero__actions">
+        {% if include.cta_label or page.cta_label %}
+          <a class="btn btn--primary" href="{{ include.cta_url | default: page.cta_url | default: '#guides' }}">{{ include.cta_label | default: page.cta_label | default: 'Explore guides' }}</a>
+        {% endif %}
+        {% if include.secondary_label or page.secondary_label %}
+          <a class="btn btn--ghost" href="{{ include.secondary_url | default: page.secondary_url | default: '/contact' }}">{{ include.secondary_label | default: page.secondary_label | default: 'Contact' }}</a>
+        {% endif %}
+      </div>
+      <ul class="hero__meta">
+        <li>Procedures, pipelines, and analysis notes</li>
+        <li>Maintained by the lab</li>
+      </ul>
+    </div>
+    <div class="hero__card">
+      <div class="hero__badge">Latest</div>
+      <div class="hero__card-body">
+        <p class="hero__card-title">{{ site.posts.first.title | default: 'Lab updates' }}</p>
+        {% if site.posts.first %}
+          <p class="hero__card-text">{{ site.posts.first.excerpt | strip_html | truncatewords: 22 }}</p>
+          <a class="hero__link" href="{{ site.posts.first.url | relative_url }}">Read update →</a>
+        {% else %}
+          <p class="hero__card-text">Stay tuned for the latest news from the lab.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,19 +1,14 @@
 ---
 layout: home
-title: Welcome to Diedrichsen Lab Wiki
+title: Lab Knowledge Base
 list_title: "Latest Lab Updates"
+hero_subtitle: Comprehensive guide to lab procedures, protocols, and analysis resources.
+cta_label: View guides
+cta_url: "#guides"
+secondary_label: Contact
+secondary_url: "/contact"
 ---
 
-Comprehensive guide to lab procedures, protocols, and resources.
+{% include hero.html %}
 
-## Guides
-
-{% for guide in site.guides %}
-- [{{ guide.title }}]({{ guide.url }})
-{% endfor %}
-
-<!-- ## Tutorials
-
-{% for tutorial in site.tutorials %}
-- [{{ tutorial.title }}]({{ tutorial.url }})
-{% endfor %} -->
+{% include guide-cards.html description="Quick access to validated procedures, data processing steps, and analysis how-tos." %}

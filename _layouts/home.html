@@ -10,32 +10,31 @@ layout: default
   {{ content }}
 
   {% if site.posts.size > 0 %}
-    <section class="posts-section">
-      <h2 class="section-heading">{{ page.list_title | default: "Latest Posts" }}</h2>
-      <ul class="post-list">
+    <section class="section section--tint" id="updates">
+      <div class="wrapper section__header">
+        <div>
+          <p class="eyebrow">News</p>
+          <h2 class="section__title">{{ page.list_title | default: "Latest Posts" }}</h2>
+        </div>
+        <a class="section__cta" href="{{ '/posts' | relative_url }}">View all →</a>
+      </div>
+      <div class="wrapper posts-grid">
         {% for post in site.posts %}
-          <li>
-            <article class="post-preview">
-              <h3 class="post-title">
-                <a href="{{ post.url | relative_url }}">
-                  {{ post.title | escape }}
-                </a>
-              </h3>
-              <p class="post-meta">
-                <time datetime="{{ post.date | date_to_xmlschema }}">
-                  {{ post.date | date: "%b %d, %Y" }}
-                </time>
-                {% if post.author %}
-                  • by {{ post.author }}
-                {% endif %}
-              </p>
-              {% if post.excerpt %}
-                <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
-              {% endif %}
-            </article>
-          </li>
+          <article class="post-card">
+            <p class="post-card__date">
+              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
+            </p>
+            <h3 class="post-card__title"><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
+            {% if post.excerpt %}
+              <p class="post-card__excerpt">{{ post.excerpt | strip_html | truncatewords: 26 }}</p>
+            {% endif %}
+            {% if post.author %}
+              <p class="post-card__meta">by {{ post.author }}</p>
+            {% endif %}
+            <a class="post-card__link" href="{{ post.url | relative_url }}">Read post</a>
+          </article>
         {% endfor %}
-      </ul>
+      </div>
     </section>
   {% endif %}
 </div>

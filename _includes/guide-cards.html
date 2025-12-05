@@ -1,0 +1,33 @@
+<section class="section" id="{{ include.anchor | default: 'guides' }}">
+  <div class="wrapper section__header">
+    <div>
+      <p class="eyebrow">Guides</p>
+      <h2 class="section__title">{{ include.title | default: 'Guides' }}</h2>
+      {% if include.description %}
+        <p class="section__subtitle">{{ include.description }}</p>
+      {% endif %}
+    </div>
+    <a class="section__cta" href="{{ '/guides' | relative_url }}">View all →</a>
+  </div>
+
+  <div class="wrapper cards-grid">
+    {% assign guides = site.guides | sort: 'order' %}
+    {% for guide in guides %}
+      <article class="card">
+        <div class="card__body">
+          <div class="card__badge">{{ guide.category | default: 'Lab' }}</div>
+          <h3 class="card__title"><a href="{{ guide.url | relative_url }}">{{ guide.title }}</a></h3>
+          {% if guide.description %}
+            <p class="card__text">{{ guide.description }}</p>
+          {% else %}
+            <p class="card__text">{{ guide.excerpt | strip_html | truncatewords: 26 }}</p>
+          {% endif %}
+        </div>
+        <div class="card__footer">
+          <span class="card__meta">Updated {{ guide.date | default: guide.last_modified_at | date: '%b %d, %Y' }}</span>
+          <a class="card__link" href="{{ guide.url | relative_url }}">Read guide</a>
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
