@@ -1,9 +1,8 @@
 ---
 layout: home
-title: Welcome to Diedrichsen Lab
+title: Welcome to Diedrichsen Lab Wiki
 list_title: "Latest Lab Updates"
 ---
-# Welcome to Diedrichsen Lab Wiki
 
 Comprehensive guide to lab procedures, protocols, and resources.
 
