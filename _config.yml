@@ -19,7 +19,7 @@
 # in the templates via {{ site.myvariable }}.
 
 title: Diedrichsen Lab
-email:
+email: diedrichsenlab@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   A guide to lab procedures and protocols at the Diedrichsen Lab.
 baseurl: "" # the subpath of your site, e.g. /blog
