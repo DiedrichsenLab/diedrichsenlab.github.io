@@ -2,7 +2,7 @@
 layout: page
 title: Table of SNR for fMRI Experiments
 author: Ali Ghavampour
-date: 2025-03-21
+date: 2024-11-19
 category: fMRI
 description: Signal quality estimated for some datasets from our lab.
 ---

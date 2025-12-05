@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Contributing to the WIKI
-date: 2024-09-02
+date: 2023-10-19
 category: wiki
 description: How can you contribute to this wiki?
 ---

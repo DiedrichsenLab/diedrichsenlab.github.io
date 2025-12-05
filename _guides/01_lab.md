@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Navigating Lab Meetings
-date: 2024-09-02
+date: 2023-09-08
 category: 
 description: Diedrichsen Lab meetings
 ---

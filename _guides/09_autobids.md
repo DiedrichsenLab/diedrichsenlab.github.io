@@ -1,7 +1,7 @@
 ---
 layout: page
 title: DICOM to Nifti conversion using autobids routines
-date: 2024-08-01
+date: 2024-03-18
 category: fMRI
 description: How to use autobids to BIDS your CFMM (f)MRI data.
 ---

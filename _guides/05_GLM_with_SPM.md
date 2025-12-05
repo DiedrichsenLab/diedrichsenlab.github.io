@@ -2,7 +2,7 @@
 layout: page
 title: First-level GLM in SPM
 usemathjax: true
-date: 2024-09-02
+date: 2023-10-26
 category: fMRI
 description: Setting up GLM in SPM.
 ---

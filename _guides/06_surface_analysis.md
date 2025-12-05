@@ -2,7 +2,7 @@
 layout: page
 title: Surface-based analysis for neocortex
 usemathjax: true
-date: 2024-08-24
+date: 2023-12-21
 category: fMRI
 description: Guide for performing surface analysis.
 ---
