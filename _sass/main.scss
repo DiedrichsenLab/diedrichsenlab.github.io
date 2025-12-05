@@ -248,13 +248,21 @@ blockquote {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(255, 255, 255, 0.98);
-    padding: $spacing-unit * 2;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(6px);
+    padding: $spacing-unit * 2.5 $spacing-unit * 1.75;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: $spacing-unit * 1.2;
-    z-index: 1100;
+    gap: $spacing-unit * 1.1;
+    width: 100%;
+    max-width: none;
+    min-height: 100vh;
+    margin: 0 auto;
+    box-shadow: 0 12px 35px rgba(10, 31, 38, 0.12);
+    z-index: 1200;
+    text-align: center;
+    overflow-y: auto;
   }
 }
 
@@ -320,6 +328,7 @@ label[for="nav-trigger"] {
 .nav-trigger:checked ~ .trigger {
   @media (max-width: $on-palm) {
     display: flex;
+        animation: fadeIn 0.2s ease;
   }
 }
 
@@ -541,8 +550,8 @@ label[for="nav-trigger"] {
   gap: $spacing-unit;
 }
 
-.eyebrow {
-  text-transform: uppercase;
+    position: relative;
+    z-index: 1250; // keep toggle above overlay
   letter-spacing: 0.12em;
   font-size: 0.75rem;
   font-weight: 700;
@@ -574,14 +583,32 @@ label[for="nav-trigger"] {
   padding: 0;
   margin: $spacing-unit 0 0 0;
   color: $text-light;
-  font-size: 0.95rem;
-  flex-wrap: wrap;
-}
-
-.hero__card {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: $primary-color;
+    text-align: center;
+    width: 100%;
+    padding: 0.2rem 0;
   background: $surface-color;
   border: 1px solid $border-color;
   border-radius: 16px;
+@media (max-width: $on-palm) {
+  .site-nav .trigger .page-link + .page-link {
+    border-top: 1px solid rgba($border-color, 0.5);
+    padding-top: $spacing-unit * 0.6;
+  }
+}
+
+@media (max-width: $on-palm) {
+  .site-nav .trigger .page-link.is-active {
+    color: $accent-color;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
   box-shadow: var(--shadow-soft);
   padding: $spacing-unit * 1.5;
   position: relative;
