@@ -2,16 +2,22 @@
   <data class="u-url" href="{{ "/" | relative_url }}"></data>
 
   <div class="wrapper">
+
+    <h2 class="footer-heading">{{ site.title | escape }}</h2>
+
     <div class="footer-col-wrapper">
       <div class="footer-col footer-col-1">
-        <h3 class="footer-heading">{{ site.title | escape }}</h3>
         <ul class="contact-list">
-          {%- if site.author -%}
-          <li class="p-name">{{ site.author | escape }}</li>
-          {%- endif -%}
-          {%- if site.email -%}
-          <li><a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-          {%- endif -%}
+          <li class="p-name">
+            {%- if site.author -%}
+              {{ site.author | escape }}
+            {%- else -%}
+              {{ site.title | escape }}
+            {%- endif -%}
+            </li>
+            {%- if site.email -%}
+            <li><a class="u-email" href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+            {%- endif -%}
         </ul>
       </div>
 
@@ -24,9 +30,6 @@
       </div>
     </div>
 
-    <div class="footer-bottom">
-      <p>&copy; {% now "%Y" %} {{ site.title | escape }}. All rights reserved.</p>
-    </div>
   </div>
 
 </footer>
