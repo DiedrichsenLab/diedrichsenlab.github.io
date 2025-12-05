@@ -6,13 +6,13 @@ list_title: "Latest Lab Updates"
 
 Comprehensive guide to lab procedures, protocols, and resources.
 
-<!-- ## Guides
+## Guides
 
 {% for guide in site.guides %}
 - [{{ guide.title }}]({{ guide.url }})
 {% endfor %}
 
-## Tutorials
+<!-- ## Tutorials
 
 {% for tutorial in site.tutorials %}
 - [{{ tutorial.title }}]({{ tutorial.url }})
