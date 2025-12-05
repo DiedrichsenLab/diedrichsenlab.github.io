@@ -1,12 +1,13 @@
 ---
 layout: home
+title: Welcome to Diedrichsen Lab
+list_title: "Latest Lab Updates"
 ---
-
 # Welcome to Diedrichsen Lab Wiki
 
 Comprehensive guide to lab procedures, protocols, and resources.
 
-## Guides
+<!-- ## Guides
 
 {% for guide in site.guides %}
 - [{{ guide.title }}]({{ guide.url }})
@@ -16,4 +17,4 @@ Comprehensive guide to lab procedures, protocols, and resources.
 
 {% for tutorial in site.tutorials %}
 - [{{ tutorial.title }}]({{ tutorial.url }})
-{% endfor %}
+{% endfor %} -->
