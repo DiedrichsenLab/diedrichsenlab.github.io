@@ -247,7 +247,7 @@ blockquote {
   @media (max-width: $on-palm) {
     display: none;
     position: absolute;
-    top: calc(100% + $spacing-unit * 0.5);
+    top: calc(100% + $spacing-unit * 0.75);
     right: 0;
     left: auto;
     width: min(320px, calc(100vw - $spacing-unit * 2));
@@ -311,6 +311,8 @@ label[for="nav-trigger"] {
     cursor: pointer;
     box-shadow: var(--shadow-light);
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    z-index: 1101; // keep toggle above dropdown so it can be closed
   }
 }
 
