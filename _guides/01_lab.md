@@ -1,6 +1,9 @@
 ---
 layout: page
 title: Navigating Lab Meetings
+date: 2024-09-02
+category: 
+description: Diedrichsen Lab meetings
 ---
 
 ## Table of Contents
@@ -23,7 +26,7 @@ title: Navigating Lab Meetings
 ## Frequency and Duration
 
 ### Frequency
-- Lab meetings are held *weekly* at the same day and time (Monday 10:30)
+- Lab meetings are held *weekly* at the same day and time (Monday 11:30)
 - Lab meetings are held in-person in room 4105 at the Western Interdisciplinary Research Building unless specified otherwise.
 
 

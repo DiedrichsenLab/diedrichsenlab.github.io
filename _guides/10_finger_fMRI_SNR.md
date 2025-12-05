@@ -1,6 +1,10 @@
 ---
 layout: page
 title: Table of SNR for fMRI Experiments
+author: Ali Ghavampour
+date: 2025-03-21
+category: fMRI
+description: Signal quality estimated for some datasets from our lab.
 ---
 
 When designing a new fMRI experiment, we need to select parameters such as the number of conditions, number of trials, spatial resolution, and more. These choices determine the quality of the fMRI signal. Below is a summary table showing **signal quality (~SNR)** in relation to **design parameters** from previous studies in our lab. This table provides insight into the signal quality you may get in your experiment.

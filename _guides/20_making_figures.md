@@ -2,6 +2,9 @@
 layout: page
 title: Making awesome figures
 usemathjax: true
+date: 2025-01-20
+category: research
+description: How do I really make figures?
 ---
 A large part of human brain is devoted to image processing. So it should not be a big surprise that many (human) scientists mostly look at Figures and captions.
 When designing figures for a paper, the goal is to produce something that is so compelling that the reader can grasp the main points of the paper without even reading a single word. 

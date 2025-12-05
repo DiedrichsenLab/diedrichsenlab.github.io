@@ -3,7 +3,8 @@ layout: page
 title: "Setup a new robotcode project"
 author: "Ali Ghavampour"
 date: 2025-12-04
-categories: [code, guide, c++]
+category: robotcode
+description: Complete guide to start a robotcode project
 ---
 
 <style>

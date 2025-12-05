@@ -2,6 +2,10 @@
 layout: page
 title: Preprocessing fMRI data
 usemathjax: true
+author: Ali Ghavampour
+date: 2024-08-03
+category: fMRI
+description: a general fMRI preprocessing pipeline in Diedrichsen Lab.
 ---
 
 ## Required packages, software installations

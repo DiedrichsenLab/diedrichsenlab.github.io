@@ -1,6 +1,9 @@
 ---
 layout: page
 title: Contributing to the WIKI
+date: 2024-09-02
+category: wiki
+description: How can you contribute to this wiki?
 ---
 
 The webpage is build with Jekyll (using liquid syntax).

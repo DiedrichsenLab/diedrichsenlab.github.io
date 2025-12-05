@@ -1,26 +1,30 @@
 <footer class="site-footer">
-  <div class="footer-wrapper">
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>{{ site.title | escape }}</h3>
-        {%- if site.email -%}
-          <p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
-        {%- endif -%}
-      </div>
-
-      <div class="footer-section">
-        <h4>Connect</h4>
-        {%- include social.html -%}
-      </div>
-
-      <div class="footer-section">
-        <h4>About</h4>
-        <p>{{- site.description | escape -}}</p>
-      </div>
+  <div class="wrapper footer-grid">
+    <div class="footer-brand">
+      <p class="footer-eyebrow">{{ site.title | escape }}</p>
+      <p class="footer-title">Lab Wiki</p>
+      <p class="footer-text">{{ site.description | escape }}</p>
+      {%- if site.email -%}
+      <a class="footer-link" href="mailto:{{ site.email }}">{{ site.email }}</a>
+      {%- endif -%}
     </div>
 
-    <div class="footer-bottom">
-      <p>&copy; {% assign year = site.time | date: "%Y" %}{{ year }} {{ site.title | escape }}. All rights reserved.</p>
+    <div class="footer-links">
+      <h4>Explore</h4>
+      <a class="footer-link" href="{{ '/' | relative_url }}">Home</a>
+      <a class="footer-link" href="{{ '/guides/' | relative_url }}">Guides</a>
+      <a class="footer-link" href="{{ '/posts/' | relative_url }}">Posts</a>
+      <a class="footer-link" href="{{ '/contact' | relative_url }}">Contact</a>
     </div>
+
+    <div class="footer-social">
+      <h4>Connect</h4>
+      {%- include social.html -%}
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; {% assign year = site.time | date: "%Y" %}{{ year }} {{ site.title | escape }}.</p>
+    <p class="footer-updated">Last updated {{ site.time | date: '%b %d, %Y' }}</p>
   </div>
 </footer>

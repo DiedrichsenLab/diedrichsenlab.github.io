@@ -2,6 +2,9 @@
 layout: page
 title: Surface-based analysis for neocortex
 usemathjax: true
+date: 2024-08-24
+category: fMRI
+description: Guide for performing surface analysis.
 ---
 
 # Software requirements

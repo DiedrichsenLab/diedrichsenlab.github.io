@@ -11,11 +11,12 @@
   </div>
 
   <div class="wrapper cards-grid">
-    {% assign guides = site.guides | sort: 'order' %}
+    {%- comment -%} Sort by date descending; guides without date fall to bottom {%- endcomment -%}
+    {% assign guides = site.guides | sort: 'date' | reverse %}
     {% for guide in guides %}
       <article class="card">
         <div class="card__body">
-          <div class="card__badge">{{ guide.category | default: 'Lab' }}</div>
+          <div class="card__badge">{{ guide.category | default: '' }}</div>
           <h3 class="card__title"><a href="{{ guide.url | relative_url }}">{{ guide.title }}</a></h3>
           {% if guide.description %}
             <p class="card__text">{{ guide.description }}</p>

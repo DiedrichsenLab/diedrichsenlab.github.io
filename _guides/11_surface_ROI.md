@@ -1,6 +1,9 @@
 ---
 layout: page
 title: How to draw a surface ROI? 
+date: 2025-02-11
+category: fMRI
+description: Use connectome workbench to draw surface ROIs
 ---
 
 # 1. Open connectome workbench interface
