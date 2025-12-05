@@ -20,7 +20,7 @@
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; {% now 'utc' | date: '%Y' %} {{ site.title | escape }}. All rights reserved.</p>
+      <p>&copy; {% assign year = site.time | date: "%Y" %}{{ year }} {{ site.title | escape }}. All rights reserved.</p>
     </div>
   </div>
 </footer>
