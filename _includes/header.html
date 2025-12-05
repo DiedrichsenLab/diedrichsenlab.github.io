@@ -18,6 +18,12 @@
         </label>
 
         <div class="trigger">
+          <div class="trigger__top">
+            <span class="trigger__title">Menu</span>
+            <label for="nav-trigger" class="nav-close" aria-label="Close navigation">
+              <span aria-hidden="true">×</span>
+            </label>
+          </div>
           {%- for path in page_paths -%}
             {%- assign my_page = site.pages | where: "path", path | first -%}
             {%- if my_page.title -%}

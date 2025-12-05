@@ -246,19 +246,15 @@ blockquote {
 
   @media (max-width: $on-palm) {
     display: none;
-    position: absolute;
-    top: calc(100% + $spacing-unit * 0.75);
-    right: 0;
-    left: auto;
-    width: min(320px, calc(100vw - $spacing-unit * 2));
-    background: $surface-color;
-    border: 1px solid $border-color;
-    padding: $spacing-unit;
-    border-radius: 10px;
-    box-shadow: var(--shadow-soft);
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.98);
+    padding: $spacing-unit * 2;
     flex-direction: column;
-    gap: $spacing-unit * 0.75;
-    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    gap: $spacing-unit * 1.2;
+    z-index: 1100;
   }
 }
 
@@ -339,6 +335,57 @@ label[for="nav-trigger"] {
 
   svg {
     fill: $text-color;
+  }
+}
+
+// Full-screen mobile overlay controls
+.trigger__top {
+  display: none;
+
+  @media (max-width: $on-palm) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 520px;
+    position: absolute;
+    top: $spacing-unit * 1.2;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.trigger__title {
+  font-weight: 600;
+  color: $text-color;
+}
+
+.nav-close {
+  display: none;
+
+  @media (max-width: $on-palm) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid $border-color;
+    border-radius: 10px;
+    background: $surface-color;
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: var(--shadow-light);
+  }
+}
+
+@media (max-width: $on-palm) {
+  .site-nav .trigger .page-link {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: $text-color;
+    text-align: center;
+    width: 100%;
   }
 }
 
