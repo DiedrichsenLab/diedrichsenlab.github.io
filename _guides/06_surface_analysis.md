@@ -7,13 +7,13 @@ category: fMRI
 description: Guide for performing surface analysis.
 ---
 
-# Software requirements
+## Software requirements
 - [Freesurfer](https://surfer.nmr.mgh.harvard.edu/fswiki/DownloadAndInstall)
 - [Connectome Workbench](https://www.humanconnectome.org/software/connectome-workbench)
 - [SurfAnalysis Toolbox for Matlab](https://github.com/Diedrichsenlab/surfAnalysis)
 - [SurfAnalysis Toolbox for Python](https://github.com/DiedrichsenLab/surfAnalysisPy)
 
-# Standard Surface Spaces
+## Standard Surface Spaces
 
 ### fsaverage
 The fsaverage surface is the standard surface space for Freesurfer. It is defined on a sphere with 163842 vertices. The surface is not symmetric across the left and right hemisphere. That is, a vertex with a specific number will refer to different areas in each hemisphere.
@@ -35,10 +35,23 @@ This process take several hours (or more) per subject, and produces freesurfer f
 
 
 ## Step2: Transforming to fs_LR space
-The next step is to resample the individual surface from fsaverage space (e.g., the Freesurfer output created in Step 1) into fs_LR space. You can do this by calling the Matlab toolbox function:
+The next step is to resample the individual surface from fsaverage space (e.g., the Freesurfer output created in Step 1) into fs_LR space.
+
+#### Matlab
+In Matlab you can do this by calling this function:
+
 ```
 surf_resliceFS2WB(subj_name,fsDir,wbDir,'resolution','32k')
 ```
+
+#### Python
+In Python the function is in the ```SurfAnalysisPy``` repository (Diedrichsenlab).
+
+```
+import surfAnalysisPy as surf
+reslice_fs_to_wb(subj_name,fsDir,wbDir,resolution="32k"):
+```
+
 As inputs, the function requires the location of the Freesurfer ```<SUBJECTS_DIR>``` (```fsDir```), the location of the directory to which the resampled, Workbench format files will be written (```wbDir```), and the subject ID (```subj_name```). The function will create a subfolder for the subject in wbDir and save all gifti files there. By default, the function resamples the white, pial, and inflated surface.  It also creates files for the sulcal depth, curvature, and area.  Unless ```resolution``` is specified in the function call, the default resampling will be to the ~32k surface.
 
 **N.B.:** For additional information on the default Freesurfer directory setup and how to change the location of Freesurfer's ```<SUBJECTS_DIR>```, please see following the Freesurfer wiki [page]().
@@ -75,14 +88,14 @@ Remove the pial surface and add the white matter surface reconstruction. Make su
 
 Focus on the white matter surface going into the coronal T1 slice, not the saggital slice. Since the white matter connects the hemispheres only at the corpus callosum, which is hidden behind the rest of the white matter in this view, it's hard to spot mismatches to the saggital T1 slice. Instead, look at where the white matter surface enters the coronal slice and the axial slice.
 
-#### Check via outline  
-An alternative way to check the individual surface is to load the volume and the two surfaces at the same time in `wb_view` and select Volume view. 
-On the Overlay toolbox, select the Vol/Surf outline tab. This gives you the option to add the two surfaces as outlines in different colors. This allows for a accurate check of the alignment of the surfaces with the volume. Make sure you scroll through the entire volume to check for alignment issues across the entire neocortex.  
+#### Check via outline
+An alternative way to check the individual surface is to load the volume and the two surfaces at the same time in `wb_view` and select Volume view.
+On the Overlay toolbox, select the Vol/Surf outline tab. This gives you the option to add the two surfaces as outlines in different colors. This allows for a accurate check of the alignment of the surfaces with the volume. Make sure you scroll through the entire volume to check for alignment issues across the entire neocortex.
 
 <img src="./surface_check_5.png" alt="WMSurface_Match" width="400"/>
 
 ## Step 4: Mapping data from volume to surface
-After the subject's anatomical images have been resampled into fs_LR space, the next step is to map any volumetric functional files (e.g., statistical parametric maps) to surface space via the individual surface.  
+After the subject's anatomical images have been resampled into fs_LR space, the next step is to map any volumetric functional files (e.g., statistical parametric maps) to surface space via the individual surface.
 
 #### Matlab
 In matlab this step is implemented in calling `surf_vol2surf` in the [SurfAnalysis Toolbox](https://github.com/Diedrichsenlab/surfAnalysis):
@@ -91,18 +104,18 @@ surf_vol2surf(c1,c2,V,'anatomicalStruct','CortexLeft')
 ```
 As inputs, the function requires a Px3 matrix of vertices (x,y,z coordinates) for the individual's white surface (```c1```), a Px3 matrix of vertices (x,y,z coordinates) for the individual's pial surface (```c2```), and a list of volumes (loadable with spm_vol) to be mapped (```V```). These files were generate in step 2. Unless ```anatomicalStruct``` is specified in the function call, the default surface is ```CortexLeft```; other options are ```Cerebellum``` and ```CortexRight```.
 
-#### Python 
+#### Python
 In python you can achieve functional to surface mapping using the [SurfAnalysisPy Toolbox](https://github.com/DiedrichsenLab/surfAnalysisPy)
 
 ```
 import surfAnalysisPy as surf
 Data = surf.map.vol_to_surf(volumes, whiteSurfGifti, pialSurfGifti,
-            stats='nanmean') 
+            stats='nanmean')
 ```
 
 For an example see [here](https://github.com/DiedrichsenLab/surfAnalysisPy/blob/master/notebooks/flatmap_example.ipynb)
 
-#### Workbench 
+#### Workbench
 For alternative functionality see wb_command volumne-to-surface-mapping
 https://www.humanconnectome.org/software/workbench-command/-volume-to-surface-mapping
 
