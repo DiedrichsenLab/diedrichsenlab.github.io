@@ -7,47 +7,89 @@ title: DICOM to Nifti conversion using autobids routines
 
 # The CFMM DICOM Server
 
-MRI datasets acquired at CFMM are stored in the CFMM DICOM server. To download the data, go to [CFMM Study Managment](https://dicom.cfmm.uwo.ca/), then click on the link to "DICOM Data Browser". To access the data of a specific project, type PRINCIPAL^PROJECT-ID (e.g., DIEDRICHSEN^SMP) in the "Study Description" search field, then click Submit. You will see the list of datasets (i.e., participants, sessions...) collected for your study. Each dataset is identified by a Patient's Name with a standard format YYYY_MM_DD_PROJECT-ID_SUBJ-ID (e.g., 2024_03_13_SMP1_100). In each dataset, MRI data are stored in the DICOM format (.dcm). **You don't need to download the datasets from the CFMM DICOM Server to perform the conversion to Nifti (.nii).
+MRI datasets acquired at CFMM are stored in the CFMM DICOM server. To download the data, go to 
+[CFMM Study Managment](https://dicom.cfmm.uwo.ca/), then click on the link to "DICOM Data Browser". To access the data of a specific project, 
+type PRINCIPAL^PROJECT-ID (e.g., DIEDRICHSEN^SMP) in the "Study Description" search field, then click Submit. You will 
+see the list of datasets (i.e., participants, sessions...) collected for your study. Each dataset is identified by a 
+Patient's Name with a standard format YYYY_MM_DD_PROJECT-ID_SUBJ-ID (e.g., 2024_03_13_SMP1_100). In each dataset, MRI 
+data are stored in the DICOM format (.dcm). **You don't need to download the datasets from the CFMM DICOM Server to 
+perform the conversion to Nifti (.nii).
 
 # First step: *cfmm2tar*
 
-DICOM to Nifti conversion involves two steps (*cfmm2tar* and *tar2bids*). Both can be run from the terminal of the CBS server. 
+As of February 2026, `singularity run /srv/containers/cfmm2tar_v1.0.0.sif` is no longer available due to a certificate 
+change in the DICOM server. For this step, it is therefore necessary to use the new version of cfmm2tar. Please follow 
+the installation instructions at https://github.com/khanlab/cfmm2tar. 
+
+Note that `pixi global install cfmm2tar -c khanlab` could fail with the following error log:
+
+```
+No global environments found. WARN Couldn't install cfmm2tar 
+× failed to solve the environment 
+╰─▶ Cannot solve the request because of: cfmm2tar * cannot be installed because there are no viable options: 
+└─ cfmm2tar v2.1.0 | 2.0.2 | 2.1.0 | 2.2.0 would require 
+└─ python >=3.11, for which no candidates were found.
+```
+
+In this case, please try `pixi global install -c conda-forge -c khanlab "python=3.11" cfmm2tar` instead.
+
+After cfmm2tar is installed, DICOM to Nifti conversion involves two steps (*cfmm2tar* and *tar2bids*). Both can be run 
+from the terminal of the CBS server. 
 
 1) Log in into the CBS server. See [this guide](https://osf.io/k89fh/wiki/Computational%20Core%20Server/) to access the CSB server for the first time.
 
 2) Open the Terminal
 
-3) Run the following command:
+3) Create a new temporary folder:
 
 ```
-singularity run /srv/containers/cfmm2tar_v1.0.0.sif <out_dir>
+mkdir -p ~/tmp
+export TMPDIR=~/tmp
 ```
 
-`<out_dir>` is the directory where *cfmm2tar* puts the output data. You can use */local/scratch* as an output directory for *cfmm2tar*, but always remember to clean the directory when you are done.
+This is strongly advised to avoid cfmm2tar from running out of space. Note that cfmm2tar deletes the folder when it is
+done importing the data from the server.
 
-You can add flags to *cfmm2tar* to perform this step on a specific project or dataset. With the flag `-p <PRINCIPAL^PROJECT-ID>` you can input to *cfmm2tar* all the datasets beloning to a specific project:
+4) Create an output directory for cfmm2tar:
 
-```
-singularity run /srv/containers/cfmm2tar_v1.0.0.sif -p <PRINCIPAL^PROJECT-ID> <out_dir>
-```
-
-With the flag `-n <PARTICIPANT-ID>` you can input a specific dataset by using the "Patient's Name" field in the CFMM DICOM Server:
-
-```
-singularity run /srv/containers/cfmm2tar_v1.0.0.sif -n <Patient's Name> <out_dir>
+``` 
+OUTPUT_DIR=/local/scratch/
 ```
 
-*cfmm2tar* will create a .tar and a .uid file in the output directory.
+5) Run `cfmm2tar`:
+
+```
+cfmm2tar -n 'PARTICIPANT-ID' --temp-dir ~/tmp  ${OUTPUT_DIR}
+```
+
+With the flag `-n <PARTICIPANT-ID>` you can input a specific dataset by using the "Patient's Name" field in the CFMM 
+DICOM Server. More `cfmm2tar` functionalities can be found with `cfmm2tar --help` or at 
+https://github.com/khanlab/cfmm2tar.
+
+`cfmm2tar` will create a .tar and a .uid file in the output directory.
 
 # Second step: *tar2bids*
 
-After you have created the .tar and .uid file with *cfmm2tar*, the second step involves creating the BIDS repository with the .nii file. Run the following command in the Terminal:
+After you have created the .tar and .uid file with *cfmm2tar*, the second step involves creating the BIDS repository 
+with the .nii file. Run the following command in the Terminal:
 
 ```
 singularity run /srv/containers/tar2bids_v0.2.4.sif -h <project-id>_heuristic.py -o <out_dir> <filename>.tar
 ```
 
-`<filename>` is the full path of the .tar file created by *cfmm2tar* in the previous step. `<out_dir>` is the directory where tar2bids puts the Nifti files. One possibility is to set */local/scratch/BIDS* as `<out_dir>`. `<project-id>_heuristic.py` is a Python script with the information needed to convert functional runs from DICOM to Nifti. Usually, `<project-id>_heuristic.py` is located in */cifs/diedrichsen/data/your_data_directory*. If your project is new and you don't have a heuristic file yet, see the next paragraph to learn how to create one. 
+`<filename>` is the full path of the .tar file created by *cfmm2tar* in the previous step. `<out_dir>` is the directory 
+where tar2bids puts the Nifti files. One possibility is to set */local/scratch/BIDS* as `<out_dir>`. 
+`<project-id>_heuristic.py` is a Python script with the information needed to convert functional runs from DICOM to 
+Nifti. Usually, `<project-id>_heuristic.py` is located in */cifs/diedrichsen/data/your_data_directory*. If your project 
+is new and you don't have a heuristic file yet, see the next paragraph to learn how to create one.
+
+Note that sometimes `tar2bids` may run out of memory. To avoid this, create a new temporary folder before running 
+`tar2bids`:
+
+```
+mkdir -p ~/tmp
+export TMPDIR=~/tmp
+```
 
 # Heuristic files
 
@@ -98,7 +140,14 @@ def infotodict(seqinfo):
 
 ```
 
-The variable `s` points to a spreadsheet that you can find in */local/scratch/BIDS/code/tar2bids_YYYY-MM-DD_XXhXXm_ZZZZ/heudiconv/PARTICIPANT-ID/info/dicominfo.tsv*. To create the heuristic file for your project, you need to edit the example above by using the information contained in the spreadsheet. The spreadsheet contains a row for each .dcm file included in the dataset. Each column contains information about .dcm files some. For example, in the case of the project to which the above heuristics belong, the column "series_description" contains the substring "1.8iso_AP" in functional runs, in which the column "dim4" contains a number >200 (which corresponds to the number of volumes collected in each functional run). You can create the spreadsheet by running tar2bids without the -h flag on the first dataset you collect:
+The variable `s` points to a spreadsheet that you can find in 
+*/local/scratch/BIDS/code/tar2bids_YYYY-MM-DD_XXhXXm_ZZZZ/heudiconv/PARTICIPANT-ID/info/dicominfo.tsv*. To create the 
+heuristic file for your project, you need to edit the example above by using the information contained in the 
+spreadsheet. The spreadsheet contains a row for each .dcm file included in the dataset. Each column contains information 
+about .dcm files some. For example, in the case of the project to which the above heuristics belong, the column 
+"series_description" contains the substring "1.8iso_AP" in functional runs, in which the column "dim4" contains a number 
+more than 200 (which corresponds to the number of volumes collected in each functional run). You can create the 
+spreadsheet by running tar2bids without the -h flag on the first dataset you collect:
 
 ```
 singularity run /srv/containers/tar2bids_v0.2.4.sif -o <out_dir> <filename>.tar
@@ -111,14 +160,31 @@ This will create the *dicominfo.tsv* spreadsheet inside `<out_dir>` in the path 
 After you have a BIDS repository with the Nifti files, run the following command:
 
 ```
-singularity run /srv/containers/khanlab_gradcorrect_v0.0.3a.sif <bids_dir> <out_dir> participant --grad_coeff_file /srv/software/gradcorrect/coeff_AC84.grad
+singularity run /srv/containers/khanlab_gradcorrect_v0.0.3a.sif <bids_dir> <out_dir> participant --grad_coeff_file 
+/srv/software/gradcorrect/coeff_AC84.grad
 ```
 
-`<bids_dir>` is the directory where your BIDS data that is stored. This directory contains the BIDS data before the gradiant corrections. The `participant` argument must be passed as it is, it is NOT the PARTICIPANT-ID. As `<out_dir>` in *gradcorrect* you can put */local/scratch/BIDS_gradcorrect*. Inside `<out_dir>` *gradcorrect* puts several files and folder, including a sub-XX folder with three folders inside: anat, func and fmaps. These three folders contains the Nifti files output by gradcorrect. `<template_imana.m>` from `<spmj>` needs these three folders to be into */project_directory/BIDS/sub-XX/*. 
+`<bids_dir>` is the directory where your BIDS data that is stored. This directory contains the BIDS data before the 
+gradient corrections. The `participant` argument must be passed as it is, it is NOT the PARTICIPANT-ID. As `<out_dir>` 
+in *gradcorrect* you can put */local/scratch/BIDS_gradcorrect*. Inside `<out_dir>` *gradcorrect* puts several files and 
+folder, including a sub-XX folder with three folders inside: anat, func and fmaps. These three folders contains the 
+Nifti files output by gradcorrect. `<template_imana.m>` from `<spmj>` needs these three folders to be into 
+*/project_directory/BIDS/sub-XX/*. 
 
+Note that sometimes gradcorrect fails silently with the following output:
+
+```
+running participant level analysis
+/local/scratch/BIDS/participants.tsv
+```
+
+In this case, check the participants.tsv file in the BIDS dir from tar2bids. It needs to contain a column named 
+participant_id specifying sub-XX.
 
 ## Method 2: automatic conversion through autobids (Currently unavailable)
-Autobids is a pipeline maintained by the Khan lab that transforms the raw imaging data from DICOM (Properiatary Siemens format) to nifti files, renames them in BIDS standard, and applies gradient nonlinearity correction to the images as appropriate (gradcorrect).
+Autobids is a pipeline maintained by the Khan lab that transforms the raw imaging data from DICOM (Properiatary Siemens 
+format) to nifti files, renames them in BIDS standard, and applies gradient nonlinearity correction to the images as 
+appropriate (gradcorrect).
 
 [Gradcorrect](https://github.com/khanlab/gradcorrect) which calls [gradunwarp](https://github.com/kaitj/gradunwarp), adapted from the workflow used in HCP data correction. 
 
@@ -132,7 +198,9 @@ Autobids is a pipeline maintained by the Khan lab that transforms the raw imagin
     - Sign up for a [Globus account](http://app.globus.org/). You can use your UWO credentials to sign up.
     - Install the [Globus Connect Personal](https://www.globus.org/globus-connect-personal) on your computer.
 4. **Data Downlaod**: 
-    - Once your study is registered with autobids and you collect new data, your study specific pipeline will be applied and the data will be available on Globus for you to download.
+    - Once your study is registered with autobids and you collect new data, your study specific pipeline will be applied 
+      and the data will be available on Globus for you to download.
     - Login to globus and navigate to the "COLLECTIONS" tab. You should see your BIDS converted data shared with you.
     - "autobids_study_{name}_type_{type}" is the folder that contains the BIDS converted data.
-    - Collection type is provided in both "rawdata" (DICOM to Nii converted and renamed to BIDS format) or "derivedata" (DICOM to Nii converted, renamed to BIDS format and gradcorrect applied).
+    - Collection type is provided in both "rawdata" (DICOM to Nii converted and renamed to BIDS format) or "derivedata" 
+      (DICOM to Nii converted, renamed to BIDS format and gradcorrect applied).
