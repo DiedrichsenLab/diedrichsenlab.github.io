@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Diedrichsen Lab">
+  <rect width="64" height="64" rx="12" fill="#0f3d3e"/>
+  <path d="M18 20h12c7 0 12 5 12 12s-5 12-12 12H18z" fill="#f4e9d7"/>
+  <path d="M34 20h12v24H34z" fill="#f0544f"/>
+</svg>

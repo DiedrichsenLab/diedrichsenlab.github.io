@@ -1,6 +1,9 @@
 ---
 layout: page
 title: Writing clean code
+date: 2023-10-23
+category: research
+description: How write a clean code?
 ---
 
 ## Introduction

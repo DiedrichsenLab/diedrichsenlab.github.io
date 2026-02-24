@@ -1,0 +1,36 @@
+---
+layout: page
+title: Guides
+permalink: /guides/
+---
+
+<section class="section" id="guides">
+  <div class="wrapper section__header">
+    <div>
+      <p class="eyebrow">All Guides</p>
+      <h1 class="section__title">Guides</h1>
+      <p class="section__subtitle">Browse the full set of lab guides, with the most recently updated first.</p>
+    </div>
+  </div>
+
+  <div class="wrapper cards-grid">
+    {%- assign guides = site.guides | sort: 'date' | reverse -%}
+    {%- for guide in guides -%}
+      <article class="card">
+        <div class="card__body">
+          <div class="card__badge">{{ guide.category | default: '' }}</div>
+          <h2 class="card__title"><a href="{{ guide.url | relative_url }}">{{ guide.title }}</a></h2>
+          {%- if guide.description -%}
+            <p class="card__text">{{ guide.description }}</p>
+          {%- else -%}
+            <p class="card__text">{{ guide.excerpt | strip_html | truncatewords: 26 }}</p>
+          {%- endif -%}
+        </div>
+        <div class="card__footer">
+          <span class="card__meta">Updated {{ guide.date | default: guide.last_modified_at | date: '%b %d, %Y' }}</span>
+          <a class="card__link" href="{{ guide.url | relative_url }}">Read guide</a>
+        </div>
+      </article>
+    {%- endfor -%}
+  </div>
+</section>

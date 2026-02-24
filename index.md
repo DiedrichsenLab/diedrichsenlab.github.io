@@ -1,15 +1,14 @@
 ---
-# Feel free to add content and custom Front Matter to this file.
-# To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
-
 layout: home
+title: Lab Knowledge Base
+list_title: "Latest Lab Updates"
+hero_subtitle: Comprehensive guide to lab procedures, protocols, and analysis resources.
+cta_label: View guides
+cta_url: "#guides"
+secondary_label: Contact
+secondary_url: "/contact"
 ---
 
-Welcome to Diedrichsen Lab Wiki. 
+{% include hero.html %}
 
-
-## Guides
-
-{% for guide in site.guides %}
-- [{{ guide.title }}]({{ guide.url }})
-{% endfor %}
+{% include guide-cards.html description="Quick access to validated procedures, data processing steps, and analysis how-tos." %}

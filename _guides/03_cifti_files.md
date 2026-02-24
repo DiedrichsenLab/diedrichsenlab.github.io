@@ -1,6 +1,9 @@
 ---
 layout: page
 title: Working with CIFTI files
+date: 2023-10-19
+category: fMRI
+description: Intro to CIFTI files
 ---
 
 ## Types of cifti-files
