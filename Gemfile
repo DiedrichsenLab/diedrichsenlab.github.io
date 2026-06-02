@@ -12,7 +12,15 @@ source "https://rubygems.org"
 gem "minima"
 # If you want to use GitHub Pages, remove the "gem "jekyll"" above and
 # uncomment the line below. To upgrade, run `bundle update github-pages`.
-gem "github-pages", group: :jekyll_plugins
+gem "github-pages", "~> 232", group: :jekyll_plugins
+
+# Minimum versions for Dependabot / CVE fixes (transitive deps)
+gem "nokogiri", ">= 1.14.3"
+gem "rexml", ">= 3.2.7"
+gem "webrick", ">= 1.8.2"
+gem "faraday", ">= 2.14.1"
+gem "addressable", ">= 2.9.0"
+gem "activesupport", ">= 7.2.3.1"
 # If you have any plugins, put them here!
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.12"
@@ -35,6 +43,5 @@ gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 
 
 # gem "just-the-docs"
-gem 'webrick'
 gem "jekyll-remote-theme"
 
