@@ -34,7 +34,7 @@ No global environments found. WARN Couldn't install cfmm2tar
 └─ python >=3.11, for which no candidates were found.
 ```
 
-In this case, please try `pixi global install -c conda-forge -c khanlab "python=3.11" cfmm2tar` instead.
+In this case, please try `pixi global install cfmm2tar -c khanlab -c conda-forge` instead.
 
 After cfmm2tar is installed, DICOM to Nifti conversion involves two steps (*cfmm2tar* and *tar2bids*). Both can be run 
 from the terminal of the CBS server. 
