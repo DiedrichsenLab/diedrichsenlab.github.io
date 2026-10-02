@@ -5,9 +5,6 @@ date: 2026-10-02
 category: fMRI
 description: How to use cfmm2bids to BIDS your CFMM (f)MRI data.
 ---
-
-# CFMM2BIDS INSTRUCTIONS
-
 ## 0. Prerequisites
 
 Install pixi (the package manager used to run the workflow), then close and reopen the terminal so the `pixi` command works:
