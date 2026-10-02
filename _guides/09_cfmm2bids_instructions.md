@@ -49,13 +49,10 @@ cd cfmm2bids
 pixi install
 ```
 
-This will give folder “cfmm2bids”, which contains folders: “config”, “heuristics”, “resources”, “workflow”
+This will give folder “cfmm2bids”, which contains folders: “config”, “heuristics”, “resources”, “workflow”. Run all commands in this guide from the “cfmm2bids” folder (not from inside “config”).
 
-## 2. Access the config file
 
-The config file “config.yml” is in the “config” folder. Stay in the “cfmm2bids” folder (do not `cd config`), since all commands must be run from there.
-
-## 3. Create experiment-specific config file
+## 2. Create experiment-specific config file
 
 Create experiment-specific config file to identify subjects for extraction, by using config.yml as template:
 
@@ -90,7 +87,7 @@ Create experiment-specific config file to identify subjects for extraction, by u
     grad_coeff_file: /srv/software/gradcorrect/coeff_AC84.grad
 ```
 
-## 4. Adjust heuristics file
+## 3. Adjust heuristics file
 
 Adjust heuristics file “cfmm_base.py” as needed in “cfmm2bids/heuristics” for the experiment. Check the series names for your scans in the CFMM data browser.
 
@@ -109,7 +106,7 @@ if 'bold_language_AP' in s.series_description and s.dim4 > 100:
     info[func_bold].append({'item': s.series_id})
 ```
 
-## 5. Run one subject, one session at a time
+## 4. Run one subject, one session at a time
 
 ```bash
 pixi run snakemake -C head=1 --configfile config/config_[experiment_name].yml --use-apptainer --apptainer-args "--bind /srv" --cores all
@@ -124,7 +121,7 @@ results/4_fix/bids/sub-S0X/ses-X/
 ```
 
 The final dataset (gradient-corrected if gradcorrect is enabled) will be in `bids/` in the cfmm2bids folder.
-
+    
 ## 6. Run each step of the conversion individually
 
 To run each step of the conversion individually, do the following in order:
