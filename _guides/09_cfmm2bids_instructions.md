@@ -16,7 +16,7 @@ curl -fsSL https://pixi.sh/install.sh | sh
 Create a UWO credentials file so the workflow can log in to the CFMM DICOM server:
 
 ```bash
-nano ~/.uwo_credentials
+nano ~/.uwo_credentials.bd
 ```
 
 Put your UWO username (the part before @uwo.ca in your UWO email) on the first line and your UWO password on the second line, with nothing else in the file. For example:
@@ -29,10 +29,10 @@ YourPassword123
 Save with Ctrl+O, Enter, then exit with Ctrl+X. Make the file readable only by you, and never commit it to GitHub:
 
 ```bash
-chmod 600 ~/.uwo_credentials
+chmod 600 ~/.uwo_credentials.bd
 ```
 
-In your config file, make sure `credentials_file` points to it: `credentials_file: ~/.uwo_credentials`.
+In your config file, make sure `credentials_file` points to it: `credentials_file: ~/.uwo_credentials.bd`.
 
 Check that Apptainer is installed (needed for gradcorrect).
 
@@ -121,7 +121,7 @@ results/4_fix/bids/sub-S0X/ses-X/
 ```
 
 The final dataset (gradient-corrected if gradcorrect is enabled) will be in `bids/` in the cfmm2bids folder.
-    
+
 ## 6. Run each step of the conversion individually
 
 To run each step of the conversion individually, do the following in order:
