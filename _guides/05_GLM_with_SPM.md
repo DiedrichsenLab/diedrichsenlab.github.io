@@ -178,6 +178,8 @@ For instructions and fields, see:
 
 [https://www.diedrichsenlab.org/imaging/robustWLS.html](https://www.diedrichsenlab.org/imaging/robustWLS.html)
 
+The toolbox adds two covariance models, 'WLS' and 'WLS+AR'; we normally do not use them.
+
 Even if you are not using 'WLS' model, but standard model, the RWLS toobox stores a residual timeseries in your SPM structure: 
 
 ```
@@ -192,6 +194,8 @@ sqrt(SPM.ResStats.ss/SPM.ResStats.n)
 ```
 
 which is what `spm_rwls_resstats can` does. 
+
+The toolbox also lets you set a mask (`cvi_mask`) in which the noise covariance is estimated, e.g. a grey-matter mask.
 
 ## Contrast
 
